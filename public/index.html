@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneurship Study Guide</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text: #1a1a2e;
+  --text-secondary: #555;
+  --border: #e0e0e0;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --exam-bg: #fef3c7;
+  --exam-border: #f59e0b;
+  --exam-text: #92400e;
+  --sidebar-bg: #f1f5f9;
+  --sidebar-active: #2563eb;
+  --sidebar-active-bg: #dbeafe;
+  --heading-color: #1e293b;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --scrollbar-thumb: #cbd5e1;
+}
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --bg-secondary: #1e293b;
+  --text: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --accent: #60a5fa;
+  --accent-light: #1e3a5f;
+  --exam-bg: #422006;
+  --exam-border: #d97706;
+  --exam-text: #fbbf24;
+  --sidebar-bg: #1e293b;
+  --sidebar-active: #60a5fa;
+  --sidebar-active-bg: #1e3a5f;
+  --heading-color: #f1f5f9;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  --scrollbar-thumb: #475569;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+}
+/* Top Nav */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 20px; height: 60px;
+  backdrop-filter: blur(10px);
+}
+.topnav .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); white-space: nowrap; }
+.search-box {
+  flex: 1; max-width: 400px; position: relative;
+}
+.search-box input {
+  width: 100%; padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg); color: var(--text);
+  font-size: 0.9rem; outline: none;
+}
+.search-box input:focus { border-color: var(--accent); }
+.search-box::before {
+  content: '\1F50D'; position: absolute; left: 10px; top: 50%;
+  transform: translateY(-50%); font-size: 0.9rem;
+}
+.theme-toggle {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 12px; cursor: pointer;
+  font-size: 1.1rem; color: var(--text);
+}
+.menu-toggle {
+  display: none; background: none; border: none;
+  font-size: 1.5rem; cursor: pointer; color: var(--text);
+}
+/* Sidebar */
+.sidebar {
+  position: fixed; top: 60px; left: 0; bottom: 0;
+  width: 280px; background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 16px 0; z-index: 90;
+  transition: transform 0.3s;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+.sidebar-section { padding: 0 12px; margin-bottom: 8px; }
+.sidebar-section-title {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--text-secondary);
+  padding: 8px 8px 4px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.sidebar-section-title::after { content: '\25BE'; font-size: 0.8rem; }
+.sidebar-section-title.collapsed::after { content: '\25B8'; }
+.sidebar-link {
+  display: block; padding: 5px 8px 5px 16px;
+  color: var(--text); text-decoration: none;
+  font-size: 0.82rem; border-radius: 6px;
+  transition: background 0.15s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sidebar-link:hover { background: var(--accent-light); }
+.sidebar-link.active { background: var(--sidebar-active-bg); color: var(--sidebar-active); font-weight: 600; }
+.sidebar-sublinks { margin-left: 8px; }
+/* Main */
+.main {
+  margin-left: 280px; margin-top: 60px;
+  padding: 32px 48px 80px; max-width: 900px;
+}
+.module { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--border); }
+.module:last-child { border-bottom: none; }
+h1 {
+  font-size: 1.8rem; color: var(--heading-color);
+  margin-bottom: 24px; padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent);
+}
+h2 {
+  font-size: 1.4rem; color: var(--heading-color);
+  margin-top: 28px; margin-bottom: 12px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+h3 { font-size: 1.1rem; color: var(--accent); margin-top: 20px; margin-bottom: 8px; }
+h4 { font-size: 1rem; color: var(--heading-color); margin-top: 16px; margin-bottom: 6px; }
+p { margin-bottom: 10px; }
+ul, ol { margin: 8px 0 12px 24px; }
+li { margin-bottom: 4px; }
+strong { color: var(--heading-color); }
+em { color: var(--text-secondary); font-style: italic; }
+code {
+  background: var(--bg-secondary); padding: 2px 6px;
+  border-radius: 4px; font-size: 0.9em;
+  font-family: 'Fira Code', 'Consolas', monospace;
+}
+hr { border: none; border-top: 2px solid var(--border); margin: 32px 0; }
+/* Exam Focus Cards */
+.exam-focus {
+  background: var(--exam-bg); border-left: 4px solid var(--exam-border);
+  border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+  box-shadow: var(--card-shadow);
+}
+.exam-focus-title {
+  font-weight: 700; color: var(--exam-text);
+  margin-bottom: 8px; font-size: 0.95rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.exam-focus-title::before { content: '\26A0\FE0F'; }
+.exam-focus ul { margin-left: 20px; }
+.exam-focus strong { color: var(--exam-text); }
+/* Search highlights */
+mark {
+  background: #fde047; color: #000; padding: 1px 3px; border-radius: 2px;
+}
+[data-theme="dark"] mark { background: #854d0e; color: #fef3c7; }
+/* Back to top */
+.back-to-top {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 1.2rem; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.3s;
+  z-index: 50;
+}
+.back-to-top.visible { display: flex; }
+/* Progress bar */
+.progress-bar {
+  position: fixed; top: 60px; left: 0; right: 0;
+  height: 3px; background: var(--border); z-index: 99;
+}
+.progress-bar-fill {
+  height: 100%; width: 0; background: var(--accent);
+  transition: width 0.1s;
+}
+/* No results */
+.no-results {
+  text-align: center; padding: 40px;
+  color: var(--text-secondary); font-size: 1.1rem;
+  display: none;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .sidebar { transform: translateX(-100%); width: 260px; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 20px 16px 80px; }
+  .topnav .logo { font-size: 0.95rem; }
+  .search-box { max-width: 200px; }
+}
+/* Word count footer */
+.word-count-footer {
+  text-align: center; padding: 20px;
+  color: var(--text-secondary); font-size: 0.8rem;
+  border-top: 1px solid var(--border); margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  <div class="logo">Entrepreneurship Study Guide</div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search across all modules..." oninput="handleSearch(this.value)">
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark mode" aria-label="Toggle dark mode">&#9790;</button>
+</nav>
+
+<div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<aside class="sidebar" id="sidebar">
+  <!-- Module 1 -->
+  <div class="sidebar-section">
+    <div class="sidebar-section-title" onclick="toggleSection(this)">Module 1: Industry &amp; Competitor Analysis</div>
+    <div class="sidebar-sublinks">
+      <a class="sidebar-link" href="#m1">Overview</a>
+      <a class="sidebar-link" href="#m1t1">Introduction to Industry Analysis</a>
+      <a class="sidebar-link" href="#m1t2">Five Competitive Forces Model</a>
+      <a class="sidebar-link" href="#m1t3">Industry Types &amp; Opportunities</a>
+      <a class="sidebar-link" href="#m1t4">Competitor Analysis</a>
+    </div>
+  </div>
+  <!-- Module 2 -->
+  <div class="sidebar-section">
+    <div class="sidebar-section-title" onclick="toggleSection(this)">Module 2: Writing a Business Plan</div>
+    <div class="sidebar-sublinks">
+      <a class="sidebar-link" href="#m2">Overview</a>
+      <a class="sidebar-link" href="#m2t1">Introduction to Business Plans</a>
+      <a class="sidebar-link" href="#m2t2">Guidelines for Writing</a>
+      <a class="sidebar-link" href="#m2t3">Types of Business Plans</a>
+      <a class="sidebar-link" href="#m2t4">Outline of a Business Plan</a>
+      <a class="sidebar-link" href="#m2t5">Executive Summary</a>
+      <a class="sidebar-link" href="#m2t6">Company Description</a>
+      <a class="sidebar-link" href="#m2t7">Industry Analysis</a>
+      <a class="sidebar-link" href="#m2t8">Market Analysis</a>
+      <a class="sidebar-link" href="#m2t9">Marketing Plan</a>
+      <a class="sidebar-link" href="#m2t10">Management Team</a>
+      <a class="sidebar-link" href="#m2t11">Operations Plan</a>
+      <a class="sidebar-link" href="#m2t12">Product Design &amp; Development</a>
+      <a class="sidebar-link" href="#m2t13">Financial Projections</a>
+      <a class="sidebar-link" href="#m2t14">Presenting to Investors</a>
+    </div>
+  </div>
+  <!-- Module 3 -->
+  <div class="sidebar-section">
+    <div class="sidebar-section-title" onclick="toggleSection(this)">Module 3: Financial Management</div>
+    <div class="sidebar-sublinks">
+      <a class="sidebar-link" href="#m3">Overview</a>
+      <a class="sidebar-link" href="#m3t1">Intro to Financial Management</a>
+      <a class="sidebar-link" href="#m3t2">Forms of Business Ownership</a>
+      <a class="sidebar-link" href="#m3t3">Ownership Forms Breakdown</a>
+      <a class="sidebar-link" href="#m3t4">Franchising</a>
+      <a class="sidebar-link" href="#m3t5">Financial Mgmt Core Concepts</a>
+      <a class="sidebar-link" href="#m3t6">Process of Financial Mgmt</a>
+      <a class="sidebar-link" href="#m3t7">Statements &amp; Ratio Analysis</a>
+    </div>
+  </div>
+  <!-- Module 4 -->
+  <div class="sidebar-section">
+    <div class="sidebar-section-title" onclick="toggleSection(this)">Module 4: Building a New-Venture Team</div>
+    <div class="sidebar-sublinks">
+      <a class="sidebar-link" href="#m4">Overview</a>
+      <a class="sidebar-link" href="#m4t1">Intro &amp; Liabilities of Newness</a>
+      <a class="sidebar-link" href="#m4t2">The Founder or Founders</a>
+      <a class="sidebar-link" href="#m4t3">Recruiting Key Employees</a>
+      <a class="sidebar-link" href="#m4t4">Board of Directors</a>
+      <a class="sidebar-link" href="#m4t5">Board of Advisors</a>
+      <a class="sidebar-link" href="#m4t6">Lenders, Investors &amp; Professionals</a>
+    </div>
+  </div>
+</aside>
+
+<main class="main" id="mainContent">
+  <div class="no-results" id="noResults">No results found for your search query.</div>
+
+  <!-- ==================== MODULE 1 ==================== -->
+  <div class="module" id="m1" data-module="1">
+    <h1>Chapter 5: Industry and Competitor Analysis</h1>
+    <p>Here is a comprehensive study guide extracted directly from the provided presentation slides, structured sequentially and designed for web publication.</p>
+
+    <section id="m1t1">
+      <h2>Topic 1: Introduction to Industry Analysis</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Industry</strong>: A group of firms producing a similar product or service.</li>
+        <li><strong>Industry Analysis</strong>: Business research that focuses on the potential of an industry.</li>
+        <li><strong>Firm-Level Factors</strong>: Factors that include a firm's assets, products, culture, teamwork among its employees, reputation, and other resources.</li>
+        <li><strong>Industry-Level Factors</strong>: Factors that include the threat of new entrants, rivalry among existing firms, bargaining power of buyers, and related factors.</li>
+        <li><strong>Environmental Trends</strong>: Shifts in the external environment, including economic trends, social trends, technological advances, and political and regulatory changes.</li>
+        <li><strong>Business Trends</strong>: Other trends that impact an industry, such as increasing/falling profit margins, accelerating/waning innovation, or rising/falling input costs.</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Frameworks</h3>
+      <h4>Purpose and Importance of Industry Analysis</h4>
+      <ul>
+        <li>Once a new venture is determined to be feasible in regard to its market, a more in-depth analysis is required to learn the ins and outs of the industry.</li>
+        <li>This analysis helps a firm determine if the specific niche market it identified during the feasibility stage is favorable for a new firm.</li>
+      </ul>
+
+      <h4>Three Key Questions for Entrepreneurs</h4>
+      <p>Before pursuing the idea of starting a firm, an entrepreneur must answer three questions:</p>
+      <ol>
+        <li>Is the industry accessible&mdash;in other words, is it a realistic place for a new venture to enter?</li>
+        <li>Does the industry contain markets that are ripe for innovation or are underserved?</li>
+        <li>Are there positions in the industry that avoid some of the negative attributes of the industry as a whole?</li>
+      </ol>
+
+      <h4>Techniques to Assess Industry Attractiveness</h4>
+      <p>Entrepreneurs have two primary techniques available to assess how attractive an industry is:</p>
+      <ol>
+        <li>Study Environmental and Business Trends.</li>
+        <li>The Five Competitive Forces Model.</li>
+      </ol>
+
+      <h3>Highlighted Relationships</h3>
+      <ul>
+        <li><strong>Performance Variables:</strong> A firm's performance is affected by both <strong>Firm-Level Factors</strong> and <strong>Industry-Level Factors</strong>. Researchers have found that 8% to 30% of the variation in firm profitability is directly attributable to the specific industry in which a firm competes.</li>
+      </ul>
+
+      <h3>Examples Mentioned</h3>
+      <ul>
+        <li><em>Industries</em>: Airlines, fitness drinks, furniture, and electronic games.</li>
+        <li><em>Environmental Trends</em>: Industries that sell products to senior citizens are currently benefiting heavily from the social trend of an aging population.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What to expect:</strong> The distinction between firm-level and industry-level factors, and the percentage (8-30%) of profitability variation attributed to the industry.</li>
+          <li><strong>Why:</strong> Instructors often test on the fundamental justification for <em>why</em> industry analysis matters before launching a venture. Be prepared to identify the "Three Key Questions" an entrepreneur must ask before entering an industry.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m1t2">
+      <h2>Topic 2: The Five Competitive Forces Model</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>The Five Competitive Forces Model</strong>: A framework for understanding the structure of an industry, composed of the forces that determine industry profitability.</li>
+        <li><strong>Barrier to Entry</strong>: A condition that creates a disincentive for a new firm to enter an industry.</li>
+        <li><strong>Switching Costs</strong>: The fixed costs that buyers encounter when switching or changing from one supplier to another.</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Frameworks</h3>
+      <h4>Overview of the Model</h4>
+      <p>The five forces apply pressure on industry profitability and help determine the average rate of return for the firms in that industry. Well-managed firms attempt to position themselves to avoid or diminish these forces to beat the industry's average rate of return.</p>
+
+      <h4>Force 1: Threat of Substitutes</h4>
+      <ul>
+        <li>The price consumers are willing to pay depends partly on the availability of substitute products.</li>
+        <li>When close substitutes exist, industry profitability is suppressed because consumers will opt out if prices get too high.</li>
+        <li>The extent of this suppression depends on the tendency of buyers to substitute between alternatives. Firms often offer conveniences to reduce the likelihood of customers switching.</li>
+      </ul>
+
+      <h4>Force 2: Threat of New Entrants</h4>
+      <ul>
+        <li>Highly profitable industries become magnets for new entrants; unless stopped, competition increases and average industry profitability declines.</li>
+        <li>Firms use <strong>Barriers to Entry</strong> to keep the number of new entrants low.</li>
+      </ul>
+      <p><strong>Traditional Barriers to Entry:</strong></p>
+      <ul>
+        <li><em>Economies of Scale</em>: Hard for new firms to enter without accepting a cost disadvantage.</li>
+        <li><em>Product Differentiation</em>: Hard to break into industries with strong brands without heavy advertising spend.</li>
+        <li><em>Capital Requirements</em>: The need for large monetary investments to gain entrance.</li>
+        <li><em>Cost Advantages Independent of Size</em>: Existing firms may have advantages like having purchased land when it was cheaper.</li>
+        <li><em>Access to Distribution Channels</em>: Often hard to crack, particularly in crowded markets.</li>
+        <li><em>Government and Legal Barriers</em>: Industries requiring licenses granted by public authorities.</li>
+      </ul>
+      <p><strong>Nontraditional Barriers to Entry (Crucial for Start-ups):</strong></p>
+      <ul>
+        <li><em>Strength of Management Team</em>: A world-class team gives potential rivals pause.</li>
+        <li><em>First-Mover Advantage</em>: Pioneering a new concept establishes strong name recognition.</li>
+        <li><em>Passion of the Management Team and Employees</em>: A unique, highly motivated culture anticipating large rewards cannot be easily replicated by large firms.</li>
+        <li><em>Unique Business Model</em>: Establishing a unique network of relationships makes the business model difficult to copy.</li>
+        <li><em>Inventing a New Approach to an Industry</em>: Executing a new approach in an exemplary fashion prevents imitation.</li>
+        <li><em>Internet Domain Name</em>: A "spot-on" domain name offers a meaningful advantage in e-commerce.</li>
+      </ul>
+
+      <h4>Force 3: Rivalry Among Existing Firms</h4>
+      <ul>
+        <li>This is the major determinant of industry profitability in most industries. Some industries are so competitive that prices fall below costs, causing industry-wide losses, while others see subdued price competition.</li>
+      </ul>
+      <p><em>Factors determining rivalry intensity:</em></p>
+      <ul>
+        <li>Number and balance of competitors (more competitors = more price-cutting).</li>
+        <li>Degree of difference between products.</li>
+        <li>Growth rate of an industry (competition is stronger in slow-growth industries).</li>
+        <li>Level of fixed costs (high fixed costs require higher sales volumes to break even).</li>
+      </ul>
+
+      <h4>Force 4: Bargaining Power of Suppliers</h4>
+      <ul>
+        <li>Suppliers can suppress industry profitability by raising prices or reducing the quality of components.</li>
+      </ul>
+      <p><em>Factors enhancing supplier power:</em></p>
+      <ul>
+        <li>Supplier concentration (few suppliers serving many buyers).</li>
+        <li>High switching costs.</li>
+        <li>Lack of attractive substitutes for the supplier's product.</li>
+        <li>Threat of forward integration (credible threat the supplier might enter the buyer's industry).</li>
+      </ul>
+
+      <h4>Force 5: Bargaining Power of Buyers</h4>
+      <ul>
+        <li>Buyers suppress profitability by demanding price concessions or quality increases.</li>
+      </ul>
+      <p><em>Factors enhancing buyer power:</em></p>
+      <ul>
+        <li>Buyer group concentration (few large buyers purchasing from many suppliers).</li>
+        <li>Buyer's costs (higher importance of an item makes the buyer more price-sensitive).</li>
+        <li>Degree of standardization of supplier's products.</li>
+        <li>Threat of backward integration (credible threat the buyer might enter the supplier's industry).</li>
+      </ul>
+
+      <h3>Application Lists &amp; Steps</h3>
+      <h4>First Application: Assessing Industry Attractiveness</h4>
+      <p>A firm can use a grid to evaluate threats to profitability (Low, Medium, High) for each of the five forces. The steps are:</p>
+      <ul>
+        <li><strong>Step 1:</strong> Select an industry.</li>
+        <li><strong>Step 2:</strong> Determine the level of threat to industry profitability for each of the forces (low, medium, or high).</li>
+        <li><strong>Step 3:</strong> Use the table to get an overall feel for the attractiveness of the industry.</li>
+        <li><strong>Step 4:</strong> Use the table to identify the threats that are most often relevant to industry profitability.</li>
+        <li><em>Outcome:</em> If several threats are high, reconsider entering or think carefully about market positioning.</li>
+      </ul>
+
+      <h4>Second Application: Projecting Success of a New Venture</h4>
+      <p>Apply the model by asking a flow of questions:</p>
+      <ol>
+        <li>Is the industry a realistic place for a new venture? (If No -&gt; Reconsider new venture. If Yes -&gt; proceed).</li>
+        <li>Answer the following three questions:
+          <ul>
+            <li>Are there areas in which we can avoid or diminish the factors that suppress industry profitability?</li>
+            <li>Is there a unique position in the industry that avoids or diminishes the factors that suppress industry profitability?</li>
+            <li>Is there a superior business model that industry incumbents would find hard to duplicate?</li>
+          </ul>
+        </li>
+        <li><em>Outcome:</em> A positive response to <em>any</em> of those three increases the likelihood of success; a negative response to <em>all</em> three indicates reconsidering the venture.</li>
+      </ol>
+
+      <h3>Examples Mentioned</h3>
+      <ul>
+        <li><em>Substitutes:</em> Prescription medicines are highly profitable because they have few substitutes.</li>
+        <li><em>Substitutes (Mitigation):</em> Starbucks offers high-quality fresh coffee, good service, and a pleasant atmosphere to prevent customers from getting cheaper coffee elsewhere.</li>
+        <li><em>Product Differentiation Barrier:</em> Soft drink industry requires heavy advertising to break into.</li>
+        <li><em>Distribution Channel Barrier:</em> Convenience store markets are notoriously crowded and hard to crack.</li>
+        <li><em>Government Barriers:</em> Broadcasting requires a license from a public authority.</li>
+        <li><em>Buyer Power:</em> The automobile industry consists of a handful of large companies buying from thousands of suppliers, allowing automakers to demand price reductions.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What to expect:</strong> You will almost certainly be tested on the definitions of all Five Forces and the differences between traditional and nontraditional barriers to entry.</li>
+          <li><strong>Why:</strong> The Five Forces Model is the foundational framework of this entire chapter. Knowing how start-ups specifically use <em>nontraditional</em> barriers (since they lack the capital for traditional ones) is a critical concept for entrepreneurship exams.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m1t3">
+      <h2>Topic 3: Industry Types and the Opportunities They Offer</h2>
+
+      <h3>Core Concepts &amp; Frameworks</h3>
+      <p>The life cycle and structure of an industry dictate the types of opportunities available to new ventures:</p>
+      <ul>
+        <li><strong>Emerging Industries</strong>: Industries in which standard operating procedures have yet to be developed.
+          <ul><li><em>Opportunity</em>: First-mover advantage.</li></ul>
+        </li>
+        <li><strong>Fragmented Industries</strong>: Industries characterized by a large number of firms of approximately equal size.
+          <ul><li><em>Opportunity</em>: Consolidation.</li></ul>
+        </li>
+        <li><strong>Mature Industries</strong>: Industries experiencing slow or no increase in demand.
+          <ul><li><em>Opportunities</em>: Process innovation and after-sale service innovation.</li></ul>
+        </li>
+        <li><strong>Declining Industries</strong>: Industries experiencing a reduction in demand.
+          <ul><li><em>Opportunities</em>: Leadership, establishing a niche market, and pursuing a cost reduction strategy.</li></ul>
+        </li>
+        <li><strong>Global Industries</strong>: Industries experiencing significant international sales.
+          <ul><li><em>Opportunities</em>: Multidomestic and global strategies.</li></ul>
+        </li>
+      </ul>
+
+      <h3>Highlighted Relationships</h3>
+      <ul>
+        <li>There is a direct correlation between the <strong>life-cycle stage/structure</strong> of an industry (e.g., emerging vs. declining) and the specific <strong>strategic opportunities</strong> that are viable for an entrepreneur.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What to expect:</strong> Matching questions. You will likely need to match the "Industry Type" to its corresponding "Opportunity."</li>
+          <li><strong>Why:</strong> Identifying the correct strategy based on the industry's condition is a core competency for an entrepreneur assessing a new market.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m1t4">
+      <h2>Topic 4: Competitor Analysis</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Competitor Analysis</strong>: A detailed analysis of a firm's competition that helps a firm understand the positions of its major competitors and the opportunities that are available.</li>
+        <li><strong>Competitive Intelligence</strong>: The information that is gathered by a firm to learn about its competitors' strategies and behaviors.</li>
+        <li><strong>Competitive Analysis Grid</strong>: A tool for organizing the information a firm collects about its competitors.</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Frameworks</h3>
+      <h4>Types of Competitors</h4>
+      <ol>
+        <li><strong>Direct Competitors</strong>: Businesses offering identical or similar products.</li>
+        <li><strong>Indirect Competitors</strong>: Businesses offering close substitute products.</li>
+        <li><strong>Future Competitors</strong>: Businesses that are not yet direct or indirect competitors but could be at any time.</li>
+      </ol>
+
+      <h4>Collecting Competitive Intelligence</h4>
+      <p>Firms must understand competitors' behaviors and strategies before completing an analysis grid. Crucially, ventures must collect this information in a professional and ethical manner.</p>
+      <p><em>List of Ethical Ways to Obtain Information:</em></p>
+      <ul>
+        <li>Attend conferences and trade shows.</li>
+        <li>Purchase competitor's products.</li>
+        <li>Study competitors' Web sites.</li>
+        <li>Set up Google and Yahoo! e-mail alerts.</li>
+        <li>Read industry-related books, magazines, and Web sites.</li>
+        <li>Talk to customers about what motivated them to buy your product as opposed to your competitor's product.</li>
+      </ul>
+
+      <h4>Completing a Competitive Analysis Grid</h4>
+      <ul>
+        <li>This tool helps a firm see how it stacks up against competitors, identifies primary sources of competitive advantage, and provides ideas for markets to pursue.</li>
+        <li><em>Grid Components:</em> It maps the firm against several competitors across key performance metrics, rating them as an "Advantage," "Disadvantage," or "Even".</li>
+      </ul>
+
+      <h3>Examples Mentioned</h3>
+      <ul>
+        <li><em>Competitive Intelligence:</em> Companies attended the 2008 Consumer Electronics Trade Show in Las Vegas not only to display their own products but to see what their competitors were doing.</li>
+        <li><em>Case Study - Competitive Analysis Grid for Expresso Fitness:</em> Expresso Fitness mapped itself against competitors Cybex, Star Trec, Nautilus, and Life Fitness. They compared themselves across the following criteria: Product features, User engagement, Durability, User feedback, Health benefits, Price, and Customer service.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What to expect:</strong> Differentiating between direct, indirect, and future competitors, and identifying acceptable (ethical) methods of gathering competitive intelligence.</li>
+          <li><strong>Why:</strong> Business ethics is a critical component of modern business education. Instructors frequently test whether students can distinguish between standard competitive intelligence and unethical corporate espionage. Furthermore, understanding indirect vs direct competitors demonstrates a deep understanding of the "Threat of Substitutes" force.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== MODULE 2 ==================== -->
+  <div class="module" id="m2" data-module="2">
+    <h1>Structured Study Guide: Entrepreneurship - Writing a Business Plan</h1>
+
+    <section id="m2t1">
+      <h2>Topic 1: Introduction to Business Plans</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Business Plan</strong>: A written narrative, typically 25 to 35 pages long, that describes what a new business plans to accomplish.</li>
+        <li><strong>Dual-Use Document</strong>: A document used both inside and outside the firm.</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <h4>The Two Primary Audiences</h4>
+      <ul>
+        <li><strong>A Firm's Employees</strong>: They are looking for a clearly written plan that helps them operate in sync and move forward in a consistent and purposeful manner.</li>
+        <li><strong>Investors and Other External Stakeholders</strong>: They are looking for a case to be made that the firm is a good use of an investor's funds or the attention of others.</li>
+      </ul>
+      <p><em>Relationship</em>: The business plan serves as a bridge aligning internal operations (employees) with external validation and funding (investors).</p>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The dual-use nature of a business plan and the differing motives of the two primary audiences.</li>
+          <li><strong>Why:</strong> Understanding who reads the plan and what they are looking for is foundational to understanding why a business plan is written in a specific way.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t2">
+      <h2>Topic 2: Guidelines for Writing a Business Plan</h2>
+
+      <h3>Core Concepts</h3>
+      <ul>
+        <li><strong>Structure</strong>: A business plan should follow a conventional structure to make the best impression. Departing from the basic structure is usually a mistake because investors are busy people who want to easily find critical information.</li>
+        <li><strong>Tone</strong>: The plan needs to project a sense of anticipation and excitement about the possibilities surrounding the new venture, along with facts and figures.</li>
+        <li><strong>Content Length</strong>: The plan must be long enough to provide sufficient, clear, and concise information on all important aspects, yet short enough to maintain reader interest. For most plans, 25 to 35 pages is sufficient.</li>
+        <li><strong>Evolution of the Plan</strong>: It is important to recognize that the written plan will usually change, as new insights invariably emerge when entrepreneurs immerse themselves in writing and receive feedback.</li>
+      </ul>
+
+      <h3>Examples Mentioned</h3>
+      <ul>
+        <li><strong>Software Packages (Jira)</strong>: Interactive, menu-driven software packages like Jira exist to assist in writing a plan. However, entrepreneurs should avoid boilerplate plans that look like they came from a "canned" source.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The recommended length (25-35 pages) and the reasoning against using highly creative or unconventional structures.</li>
+          <li><strong>Why:</strong> Instructors want to ensure students know how to format documents to meet standard investor expectations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t3">
+      <h2>Topic 3: Types of Business Plans (Framework)</h2>
+
+      <h3>The Three-Tier Business Plan Framework</h3>
+      <p>This model categorizes business plans based on their length, target audience, and the venture's stage of development:</p>
+      <ol>
+        <li><strong>Summary Business Plan</strong>:
+          <ul>
+            <li><em>Length</em>: 10&ndash;15 pages.</li>
+            <li><em>Purpose</em>: Works best for new ventures in the early stages of development that want to "test the waters" to see if investors are interested in their idea.</li>
+          </ul>
+        </li>
+        <li><strong>Full Business Plan</strong>:
+          <ul>
+            <li><em>Length</em>: 25&ndash;35 pages.</li>
+            <li><em>Purpose</em>: Works best for new ventures that are at the point where they need funding or financing. It serves as a "blueprint" for the company's operations.</li>
+          </ul>
+        </li>
+        <li><strong>Operational Business Plan</strong>:
+          <ul>
+            <li><em>Length</em>: 40&ndash;100 pages.</li>
+            <li><em>Purpose</em>: Meant primarily for an internal audience. It works best as a tool for creating a blueprint for a new venture's operations and providing guidance to operational managers.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> Matching the type of business plan to its appropriate page length, audience, and purpose.</li>
+          <li><strong>Why:</strong> This framework distinctly categorizes the practical applications of business plans in real-world scenarios.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t4">
+      <h2>Topic 4: Outline of a Business Plan</h2>
+
+      <h3>Full List of Steps/Sections</h3>
+      <p>While each entrepreneur must decide which elements to include, a complete suggested outline consists of:</p>
+      <ol>
+        <li>Executive Summary</li>
+        <li>Company Description</li>
+        <li>Industry Analysis</li>
+        <li>Market Analysis</li>
+        <li>Marketing Plan</li>
+        <li>Management Team and Company Structure</li>
+        <li>Operation Plan</li>
+        <li>Product (or Service) Design and Development Plan</li>
+        <li>Financial Projections</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The sequential order of the sections.</li>
+          <li><strong>Why:</strong> The logical flow of a business plan is critical for investor readability.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t5">
+      <h2>Topic 5: Section 1 - Executive Summary</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Executive Summary</strong>: A short overview of the entire business plan that provides a busy reader with everything that needs to be known about the new venture's distinctive nature.</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Rules</h3>
+      <ul>
+        <li>It should not exceed two single-space pages.</li>
+        <li><em>Key Insight</em>: It is arguably the most important section of a business plan. In many instances, an investor will only ask for a copy of the executive summary and will only request the entire plan if the summary is sufficiently convincing.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The maximum length (two single-spaced pages) and its role as the gatekeeper document for investors.</li>
+          <li><strong>Why:</strong> Students must understand that without a strong executive summary, the rest of the plan may never be read.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t6">
+      <h2>Topic 6: Section 2 - Company Description</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Company Description</strong>: The main body of the business plan that begins with a general description of the company.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Company description</li>
+        <li>Company history</li>
+        <li>Mission statement</li>
+        <li>Products and services</li>
+        <li>Current status</li>
+        <li>Legal status and ownership</li>
+        <li>Key partnerships (if any)</li>
+      </ul>
+
+      <h3>Core Concepts</h3>
+      <ul>
+        <li><em>Key Insight</em>: While it may seem less important at first glance, it is extremely important because it demonstrates to the reader that you know how to translate an idea into a business.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The specific components that make up this section (e.g., mission statement, legal status).</li>
+          <li><strong>Why:</strong> It establishes the foundational legitimacy and legal realities of the startup.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t7">
+      <h2>Topic 7: Section 3 - Industry Analysis</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Industry Analysis</strong>: A section describing the industry that the business will enter in terms of its size, growth rate, and sales projections.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Industry size, growth rate, and sales projections</li>
+        <li>Industry structure</li>
+        <li>Nature of participants</li>
+        <li>Key success factors</li>
+        <li>Industry trends</li>
+        <li>Long-term prospects</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <ul>
+        <li><em>Key Insight</em>: A business must grasp its industry's promising areas and points of vulnerability before selecting a target market.</li>
+        <li><em>Relationship</em>: The industry largely defines the playing field that a firm will participate in, making this step a mandatory prerequisite before conducting the localized Market Analysis.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The difference between industry analysis and market analysis.</li>
+          <li><strong>Why:</strong> Students frequently confuse the broader industry overview with the specific target market segment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t8">
+      <h2>Topic 8: Section 4 - Market Analysis</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Market Analysis</strong>: The process of breaking the industry into segments and zeroing in on the specific segment (or target market) to which the firm will try to appeal.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Market segmentation and target market selection</li>
+        <li>Buyer behavior</li>
+        <li>Competitor analysis</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <ul>
+        <li><em>Key Insight</em>: Most startups do not service their entire industry; instead, they focus on a specific target market within the industry.</li>
+        <li><em>Relationship</em>: Knowing consumer behavior allows the startup to tailor its products or services appropriately to that specific target market.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The focus on target markets rather than whole industries, and the inclusion of competitor analysis in this section.</li>
+          <li><strong>Why:</strong> Demonstrates an understanding of realistic market sizing for startups.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t9">
+      <h2>Topic 9: Section 5 - Marketing Plan</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Marketing Plan</strong>: A section focusing on how the business will market and sell its product or service.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Overall marketing strategy</li>
+        <li>Product, price, promotions, and place</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <ul>
+        <li><em>Key Insight (Steps)</em>: The best way to describe the marketing plan is to sequentially: 1) articulate marketing strategy, positioning, and points of differentiation, and then 2) talk about how these are supported by price, promotional mix, and distribution strategy.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The 'Four Ps' (Product, price, promotions, and place) as the core components of this section.</li>
+          <li><strong>Why:</strong> These are fundamental marketing principles applied to business planning.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t10">
+      <h2>Topic 10: Section 6 - Management Team and Company Structure</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Management Team</strong>: Typically consists of the founder or founders and a handful of key management personnel.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Management team</li>
+        <li>Board of directors</li>
+        <li>Board of advisers</li>
+        <li>Company structure</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <ul>
+        <li><em>Key Insight</em>: This is a critical section of the plan.</li>
+        <li><em>Relationship with Executive Summary</em>: Many investors and readers will read the executive summary first and then go directly to the management team section to assess the strength of the people starting the firm.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The high priority investors place on this section immediately after reading the executive summary.</li>
+          <li><strong>Why:</strong> Highlights the real-world investor heuristic that "ideas are cheap, execution is key" (which relies on a strong team).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t11">
+      <h2>Topic 11: Section 7 - Operations Plan</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Operations Plan</strong>: Outlines how your business will be run and how your product or service will be produced.</li>
+      </ul>
+
+      <h3>Frameworks/Models Explained</h3>
+      <h4>Back Stage / Front Stage Model</h4>
+      <p>A useful way to illustrate how a business runs is by describing activities in two categories:</p>
+      <ul>
+        <li><em>"Back stage"</em>: Activities unseen to the customer.</li>
+        <li><em>"Front stage"</em>: Activities seen by the customer.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>General approach to operations</li>
+        <li>Business location</li>
+        <li>Facilities and equipment</li>
+      </ul>
+
+      <h3>Core Concepts</h3>
+      <ul>
+        <li><em>Key Insight</em>: This section should be kept short and crisp to strike a careful balance between adequately describing the topic and providing too much detail.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The "back stage" vs. "front stage" conceptual model and the mandate to keep the section brief.</li>
+          <li><strong>Why:</strong> Operational details can easily bloat a business plan; knowing how to categorize and condense them is a key skill.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t12">
+      <h2>Topic 12: Section 8 - Product (or Service) Design and Development Plan</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Product (or Service) Design and Development Plan</strong>: A section needed if you are developing a completely new product or service, focusing on the status of your development efforts.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Development status and tasks</li>
+        <li>Challenges and risks</li>
+        <li>Intellectual property</li>
+      </ul>
+
+      <h3>Core Concepts</h3>
+      <ul>
+        <li><em>Key Insight</em>: Many seemingly promising startups never get off the ground because product development stalls or is harder than expected. It is important to convince the reader that this will not happen to your venture.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> Why this section exists (to mitigate development risks) and the inclusion of intellectual property.</li>
+          <li><strong>Why:</strong> Acknowledging risks and protecting assets are major concerns for investors.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t13">
+      <h2>Topic 13: Section 9 - Financial Projections</h2>
+
+      <h3>Key Terms &amp; Definitions</h3>
+      <ul>
+        <li><strong>Financial Projections</strong>: The final section presenting a firm's pro forma (or projected) financial projections.</li>
+      </ul>
+
+      <h3>Full List of Items to Include</h3>
+      <ul>
+        <li>Sources and uses of funds statement</li>
+        <li>Assumptions sheet</li>
+        <li>Pro forma income statements</li>
+        <li>Pro forma balance sheets</li>
+        <li>Pro forma cash flows</li>
+        <li>Ratio analysis</li>
+      </ul>
+
+      <h3>Core Concepts &amp; Relationships</h3>
+      <ul>
+        <li><em>Relationship</em>: Financial projections come last because they take all the plans developed in the earlier sections and express them in financial terms.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The specific pro forma documents required and the rationale for placing this section at the very end of the business plan.</li>
+          <li><strong>Why:</strong> Emphasizes that finances are the quantitative translation of the qualitative strategies discussed earlier.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m2t14">
+      <h2>Topic 14: Presenting the Business Plan to Investors</h2>
+
+      <h3>Core Concepts &amp; Rules for Oral Presentations</h3>
+      <ul>
+        <li><strong>Follow Directions</strong>: If given 15 minutes, do not talk for more than the allotted time.</li>
+        <li><strong>Delivery</strong>: The presentation must be smooth and well-rehearsed. The entrepreneur should also look sharp.</li>
+        <li><strong>Visuals</strong>: Slides should be sharp and not cluttered.</li>
+        <li><strong>Preparation</strong>: A smart entrepreneur anticipates the questions that will be asked and is prepared for investor queries.</li>
+      </ul>
+
+      <h3>Full List: Twelve PowerPoint Slides to Include in an Investor Presentation</h3>
+      <ol>
+        <li>Title Slide</li>
+        <li>Problem</li>
+        <li>Solution</li>
+        <li>Opportunity and target market</li>
+        <li>Technology</li>
+        <li>Competition</li>
+        <li>Marketing and sales</li>
+        <li>Management team</li>
+        <li>Financial projections</li>
+        <li>Current status</li>
+        <li>Financing sought</li>
+        <li>Summary</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>What's likely to be tested:</strong> The specific list of the 12 slides required for an investor presentation, and the fundamental rules of presentation (timing, rehearsal, slide clarity).</li>
+          <li><strong>Why:</strong> Pitching is a core entrepreneurial skill, and standardizing the pitch deck format is industry standard practice.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== MODULE 3 ==================== -->
+  <div class="module" id="m3" data-module="3">
+    <h1>Study Guide: Entrepreneurship and Financial Management</h1>
+
+    <section id="m3t1">
+      <h2>Topic 1: Introduction to Entrepreneurial Financial Management</h2>
+      <p><strong>Overview:</strong> Understanding the financial management of an entrepreneurial firm is a critical component of assessing a new venture's financial strength and viability.</p>
+
+      <h3>Key Concepts</h3>
+      <ul>
+        <li><strong>Historical Financial Statements:</strong> Statements that reflect past performance and are usually prepared on a quarterly and annual basis. Publicly traded firms are required by the SECP (Securities and Exchange Commission of Pakistan) to prepare these and make them available to the public.</li>
+        <li><strong>Pro Forma Financial Statements:</strong> Projected financial statements for future periods (typically completed for 2 to 3 years into the future) based on forecasts. Unlike historical statements, they are strictly planning tools and are not required by the SECP.</li>
+        <li><strong>Forecasts:</strong> Estimates of a firm's future income and expenses.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> The difference between Historical and Pro Forma financial statements.</li>
+          <li><strong>Why:</strong> This is a foundational concept. Instructors frequently test the distinction between retrospective reporting (historical/SECP required) and prospective planning (pro forma/internal use).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t2">
+      <h2>Topic 2: Choosing a Form of Business Ownership</h2>
+      <p><strong>Overview:</strong> When launching a business, the entrepreneur must select a legal entity structure.</p>
+
+      <h3>Framework: Factors Critical in Selecting a Form of Business Organization</h3>
+      <p>When deciding on a legal framework, entrepreneurs must evaluate the following four critical issues:</p>
+      <ol>
+        <li><strong>The Cost:</strong> The expense of setting up and maintaining the legal form.</li>
+        <li><strong>Asset Protection:</strong> The extent to which personal assets can be shielded from the liabilities of the business.</li>
+        <li><strong>Tax Considerations:</strong> How the business structure will be taxed.</li>
+        <li><strong>Investors:</strong> The number and types of investors that will be involved in the business.</li>
+      </ol>
+
+      <h3>List of Common Legal Entities</h3>
+      <ul>
+        <li>Sole Proprietorship</li>
+        <li>Partnership (General and Limited)</li>
+        <li>Corporation (Joint Stock Company)</li>
+        <li>Limited Liability Company (LLC)</li>
+        <li>Franchising</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> The four critical factors to consider when choosing a legal form.</li>
+          <li><strong>Why:</strong> It represents a core decision-making framework for entrepreneurs evaluating different business structures.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t3">
+      <h2>Topic 3: Detailed Breakdown of Business Ownership Forms</h2>
+      <p><strong>Overview:</strong> A deeper look at the definitions, structures, and pros/cons of specific legal entities.</p>
+
+      <h3>1. Sole Proprietorship</h3>
+      <ul>
+        <li><strong>Exact Definition:</strong> A form of business ownership in which the business is owned and operated by one person, and the person and the business are essentially the same. It is the simplest form of business entity and is not a separate legal entity.</li>
+        <li><strong>Formation:</strong> No registration is required.</li>
+      </ul>
+      <p><strong>Advantages:</strong></p>
+      <ul>
+        <li>Easy and inexpensive to create.</li>
+        <li>Owner maintains complete control and retains all profits.</li>
+        <li>Business losses can be deducted against the owner's other income sources.</li>
+        <li>Not subject to double taxation.</li>
+        <li>Easy to dissolve.</li>
+      </ul>
+      <p><strong>Disadvantages:</strong></p>
+      <ul>
+        <li>Unlimited liability for the owner (a significant drawback).</li>
+        <li>Relies entirely on the skills of a single owner (though employees can be hired).</li>
+        <li>Difficult to raise capital.</li>
+        <li>Business ends at the owner's death or loss of interest.</li>
+        <li>Low liquidity of the owner's investment.</li>
+      </ul>
+
+      <h3>2. Partnership</h3>
+      <ul>
+        <li><strong>Exact Definition:</strong> The relation between persons who have agreed to share the profits of a business carried on by all or anyone acting for all (as defined by the Partnership Act 1932). It is an association of two or more individuals who agree to operate a business together for profit.</li>
+        <li><strong>Types:</strong> Can be organized as either general or limited liability partnerships.</li>
+      </ul>
+
+      <h3>3. Joint Stock Company (Corporation)</h3>
+      <ul>
+        <li><strong>Exact Definition:</strong> An artificial person created by law having a separate entity with a perpetual succession and a common seal (as defined by the Company Act 2017 and regulated by the SECP).</li>
+      </ul>
+      <p><strong>Set of Steps for Formation:</strong></p>
+      <ol>
+        <li>Promotion stage.</li>
+        <li>Registration application.</li>
+        <li>Verification of documents.</li>
+        <li>Incorporation stage.</li>
+        <li>Changes (if applicable).</li>
+        <li>Subscription of capital.</li>
+        <li>Penalties applied (if wrong statements are provided).</li>
+        <li>Commencement of business.</li>
+      </ol>
+
+      <h3>4. Classification of Companies (Private vs. Public)</h3>
+      <h4>Private Limited Company</h4>
+      <ul>
+        <li><strong>Suitable for:</strong> Family businesses, partners well-known to each other, and those wanting to raise sufficient funds.</li>
+        <li><strong>Advantages:</strong> Control over business, limited liability, and the ability to raise a large sum of capital.</li>
+      </ul>
+      <h4>Public Limited Company</h4>
+      <ul>
+        <li><strong>Features:</strong> Must have at least seven members to form, no restriction on the maximum number of shares, shares are freely sold and purchased, invites people (the public) to purchase shares, and member liability is limited.</li>
+        <li><strong>Advantages:</strong> Large amount of capital, transferability of shares, continuity, limited liability, and high reputation.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> Comparing the advantages/disadvantages of a Sole Proprietorship vs. Public/Private Companies.</li>
+          <li><strong>Why:</strong> Knowing liability limitations (unlimited in sole proprietorship vs limited in companies) and the structural differences (registration, continuity) are fundamental to business law and structure.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t4">
+      <h2>Topic 4: Franchising</h2>
+      <p><strong>Overview:</strong> A distinct form of business structure relying on a parent company's existing framework.</p>
+      <ul>
+        <li><strong>Exact Definition:</strong> A system in which semi-independent business owners (<strong>franchisees</strong>) pay fees and royalties to a parent company (<strong>franchiser</strong>) in return for the right to become identified with its trademark, to sell its products or services, and often to use its business format and system.</li>
+      </ul>
+
+      <h3>Advantages &amp; Disadvantages of Franchising</h3>
+      <p><strong>Advantages:</strong></p>
+      <ul>
+        <li>Management training and support (start-up and ongoing).</li>
+        <li>Brand name appeal.</li>
+        <li>Standardized quality of goods/services.</li>
+        <li>Greater chances of success.</li>
+      </ul>
+      <p><strong>Disadvantages:</strong></p>
+      <ul>
+        <li>Franchise fee and ongoing royalties.</li>
+        <li>Strict adherence to standardized operations.</li>
+        <li>Limited product line.</li>
+        <li>Restrictions on suppliers.</li>
+        <li>Less overall freedom.</li>
+      </ul>
+
+      <h3>Framework: The Franchising Relationship (Franchisor vs. Franchisee Responsibilities)</h3>
+      <ul>
+        <li><strong>Site selection:</strong> Franchisor oversees/approves and may choose site; Franchisee chooses site with franchisor approval.</li>
+        <li><strong>Design:</strong> Franchisor provides prototype; Franchisee pays for and implements design.</li>
+        <li><strong>Employees:</strong> Franchisor makes general recommendations/training suggestions; Franchisee hires, manages, and fires employees.</li>
+        <li><strong>Products and services:</strong> Franchisor determines the line; Franchisee modifies only with franchisor approval.</li>
+        <li><strong>Prices:</strong> Franchisor can only recommend; Franchisee sets final prices.</li>
+        <li><strong>Purchasing:</strong> Franchisor establishes quality standards and approved supplier lists; Franchisee must meet standards and purchase from approved suppliers.</li>
+        <li><strong>Advertising:</strong> Franchisor develops national campaigns; Franchisee pays for national campaigns, complies with local requirements, and gets local ads approved.</li>
+        <li><strong>Quality control:</strong> Franchisor sets standards and enforces via inspections; Franchisee maintains standards and trains employees to implement them.</li>
+        <li><strong>Support:</strong> Franchisor provides support via established business system; Franchisee operates day-to-day with that support.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> The division of responsibilities in the Franchise Relationship model (e.g., who sets final prices vs. who recommends them).</li>
+          <li><strong>Why:</strong> Understanding the balance of power and operational control is the defining characteristic of a franchise.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t5">
+      <h2>Topic 5: Financial Management Core Concepts</h2>
+      <p><strong>Overview:</strong> Tracking progress, raising money, and analyzing a firm's financial posture.</p>
+      <ul>
+        <li><strong>Exact Definition of Financial Management:</strong> The ongoing process that deals with three distinct decisions: <strong>Investment Decision</strong>, <strong>Financing Decision</strong>, and <strong>Assets management decision</strong>.</li>
+      </ul>
+
+      <h3>Key Questions Answered by Financial Management</h3>
+      <ul>
+        <li>Are we making or losing money? (Profit/loss).</li>
+        <li>How much cash is on hand? (Cash in hand).</li>
+        <li>Can we meet short-term obligations? (Liquidity).</li>
+        <li>How do we compare to industry peers? (Competitiveness).</li>
+        <li>Where will funds for improvements come from? (Financing Decision).</li>
+        <li>Can we partner to share risk/reduce cash needs? (Partnerships).</li>
+        <li>Are we in good financial shape overall? (Financial Position).</li>
+      </ul>
+
+      <h3>Framework: The 4 Primary Financial Objectives of Entrepreneurial Firms</h3>
+      <ol>
+        <li><strong>Profitability:</strong> A company's ability to make a profit. Note: Many start-ups are not profitable in their first 1-3 years as they train employees and build brands, but must eventually achieve this to remain viable.</li>
+        <li><strong>Liquidity:</strong> A company's ability to meet its short-term financial obligations. Even profitable firms can struggle to keep enough cash in the bank for routine, timely obligations.</li>
+        <li><strong>Efficiency:</strong> How productively a firm utilizes its assets relative to its revenue and profits.
+          <ul><li><em>Example / Case Study:</em> <strong>Southwest Airlines</strong> uses assets highly productively by having the lowest "turnaround time" (time airplanes sit on the ground during loading/unloading) in the airline industry.</li></ul>
+        </li>
+        <li><strong>Stability:</strong> The overall health and vigor of the firm's financial posture, particularly relating to its debt-to-equity ratio. Stability requires keeping debt in check.</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> Defining and differentiating the 4 primary financial objectives (Profitability vs Liquidity vs Efficiency vs Stability).</li>
+          <li><strong>Why:</strong> These four pillars form the complete basis for evaluating a venture's financial health.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t6">
+      <h2>Topic 6: The Process of Financial Management</h2>
+      <p><strong>Overview:</strong> How an entrepreneurial firm moves from raw historical data to future projections and ongoing operational analysis.</p>
+
+      <h3>Key Terms Defined</h3>
+      <ul>
+        <li><strong>Financial Statement:</strong> A written report that quantitatively describes a firm's financial health (Income Statement, Balance Sheet, Statement of Cash Flows).</li>
+        <li><strong>Forecasts:</strong> Predictions of a firm's future sales, expenses, income, and capital expenditures. They are based on past performance, current circumstances, and future plans. They provide the basis for pro forma statements.</li>
+        <li><strong>Budgets:</strong> Itemized forecasts of a company's income, expenses, and capital needs used as a tool for financial planning and control.</li>
+        <li><strong>Financial Ratios:</strong> Metrics that depict relationships between items on a firm's financial statements to determine if objectives are met and how the firm stacks up against industry peers.</li>
+        <li><strong>Sales Forecast:</strong> A projection of a firm's sales for a specified period (e.g., a year). It is the first forecast developed and acts as the basis for all other forecasts.
+          <ul>
+            <li><em>For a new firm:</em> Based on good-faith estimates, industry averages, and experiences of similar startups.</li>
+            <li><em>For an existing firm:</em> Based on past sales records, current production capacity/demand, and future capacity/demand factors.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Forecasting Technique</h3>
+      <ul>
+        <li><strong>Percent-of-sales method:</strong> The most common way to forecast the cost of sales and other items on the income statement. Once a sales forecast is completed, this method assumes that each expense item will grow at the exact same rate as sales (except for items that can be individually forecasted, like depreciation).</li>
+      </ul>
+
+      <h3>Framework: The 4-Step Process of Financial Management</h3>
+      <ul>
+        <li><strong>Step 1: Preparation of Historic Financial Statements</strong> (Income statement, Balance sheet, Statement of cash flows).</li>
+        <li><em>Relationship:</em> Step 1 feeds directly into Step 2.</li>
+        <li><strong>Step 2: Preparation of Forecasts</strong> (Income, Expenses, Capital expenditures).</li>
+        <li><em>Relationship:</em> Step 2 feeds directly into Step 3.</li>
+        <li><strong>Step 3: Preparation of Pro Forma Financial Statements</strong> (Pro forma income statement, balance sheet, and statement of cash flows).</li>
+        <li><em>Relationship:</em> Step 3 feeds directly into Step 4.</li>
+        <li><strong>Step 4: Ongoing Analysis of Financial Results</strong> (Ratio analysis, measuring results vs. plans, measuring results vs. industry norms).</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> The sequential order of the Financial Management Process and the "Percent-of-sales" method.</li>
+          <li><strong>Why:</strong> Understanding that historical data drives forecasts, which drive pro forma statements, is the logical backbone of financial planning.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m3t7">
+      <h2>Topic 7: Financial Statements &amp; Ratio Analysis</h2>
+      <p><strong>Overview:</strong> Detailed breakdown of specific statements and mathematical ratios used to gauge success, illustrated by a primary case study.</p>
+
+      <h3>Case Study: New Venture Fitness Drinks</h3>
+      <ul>
+        <li><strong>Background:</strong> A fictitious sports drink company in business for five years targeting sports enthusiasts with nutritional fitness drinks.</li>
+        <li><strong>Growth Strategy:</strong> Opened a single location in 2022, a second in 2024, and planned a third in 2025. Strategy involves placing small, smoothie-style restaurants near large outdoor sports complexes.</li>
+        <li><strong>Financial Status:</strong> The company is profitable and growing at a rate of 25% per year. (This case study provides the numerical backbone for the historical statements and ratio analysis examples provided in the slides).</li>
+      </ul>
+
+      <h3>The 3 Historical Financial Statements</h3>
+      <ol>
+        <li><strong>Income Statement:</strong> Reflects the results of the operations of a firm over a specified period. It records all revenues and expenses to show whether the firm made a profit or experienced a loss.</li>
+        <li><strong>Balance Sheet:</strong> A snapshot of a company's assets, liabilities, and owner's equity at a specific point in time.</li>
+        <li><strong>Statement of Cash Flows:</strong> Summarizes the changes in a firm's cash position for a specified period of time and details exactly why those changes occurred. Categorized into operating, investing, and financing activities.</li>
+      </ol>
+
+      <h3>Framework: Historical Ratio Analysis</h3>
+      <p>Interpreting statements is done practically through ratio analysis to compare a firm against industry norms.</p>
+
+      <h4>Profitability Ratios</h4>
+      <ul>
+        <li><strong>Return on Assets (ROA):</strong> <code>Net Income / Average Total Assets</code>.</li>
+        <li><strong>Return on Equity (ROE):</strong> <code>Net Income / Average Shareholders' Equity</code>.</li>
+        <li><strong>Profit Margin:</strong> <code>Net Income / Net Sales</code>.</li>
+      </ul>
+
+      <h4>Liquidity Ratios</h4>
+      <ul>
+        <li><strong>Current Ratio:</strong> <code>Current Assets / Current Liabilities</code>.</li>
+        <li><strong>Quick Ratio:</strong> <code>Quick Assets / Current Liabilities</code>.</li>
+      </ul>
+
+      <h4>Overall Financial Stability Ratios</h4>
+      <ul>
+        <li><strong>Debt Ratio:</strong> <code>Total Debt / Total Assets</code>.</li>
+        <li><strong>Debt to Equity Ratio:</strong> <code>Total Liabilities / Owners' Equity</code>.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Likely to be tested:</strong> Calculating specific ratios or matching ratio formulas to their correct category (Profitability vs. Liquidity vs. Stability).</li>
+          <li><strong>Why:</strong> Testing the formulas ensures students can quantitatively assess the 4 Primary Financial Objectives using real historical balance sheets and income statements.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== MODULE 4 ==================== -->
+  <div class="module" id="m4" data-module="4">
+    <h1>Chapter 9: Building a New-Venture Team</h1>
+
+    <section id="m4t1">
+      <h2>Introduction to New Venture Teams &amp; Liabilities of Newness</h2>
+
+      <h3>Key Concepts and Definitions</h3>
+      <ul>
+        <li><strong>New Venture Team:</strong> Is the group of founders, key employees, and advisers that move a new venture from an idea to a fully functioning firm.</li>
+        <li><strong>Liabilities of Newness:</strong> Refers to the fact that new companies often falter because the people involved can't adjust fast enough to their new roles and because the firm lacks a track record of success.</li>
+      </ul>
+
+      <h3>Framework: Elements of a New Venture Team</h3>
+      <p>The new venture team does not typically come together all at once; instead, it is built progressively as the firm can afford to hire additional personnel. The team involves more than just paid employees. The separate elements surrounding the founder or founders of a venture include:</p>
+      <ul>
+        <li>Key employees</li>
+        <li>Management team</li>
+        <li>Board of directors</li>
+        <li>Board of advisers</li>
+        <li>Lenders and investors</li>
+        <li>Other professionals</li>
+      </ul>
+
+      <h3>Concept Relationships</h3>
+      <ul>
+        <li><strong>Overcoming Failure:</strong> New ventures have a high tendency to fail due to the liabilities of newness. Assembling a talented and experienced management team is one specific path that firms can take to overcome these limitations and adjust to new roles faster.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The definition of "Liabilities of Newness" and how to overcome it.</li>
+          <li><strong>Why:</strong> It is a foundational concept explaining why startups fail and directly justifies the need for building a strong, diverse new-venture team, which is the core thesis of the chapter.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m4t2">
+      <h2>The Founder or Founders</h2>
+
+      <h3>Key Concepts and Details</h3>
+      <p>The characteristics of the founder or founders, along with their early decisions, have a significant impact on how the new venture team takes shape.</p>
+      <ul>
+        <li><strong>Size of the Founding Team:</strong> Studies show that 50% to 70% of all new ventures are started by more than one individual. It is widely believed that new ventures started by a team have an advantage over those started by a single individual.</li>
+      </ul>
+
+      <h3>List: Factors That Contribute to a Founder's Success</h3>
+      <ol>
+        <li><strong>Firm Started by a Team:</strong> Start-ups started by a team provide greater resources, a broader diversity of viewpoints, and a broader array of other positive attributes compared to individual-led ventures.</li>
+        <li><strong>Higher Education:</strong> Entrepreneurial skills are enhanced through higher education.</li>
+        <li><strong>Prior Entrepreneurial Experience:</strong> Founders who are familiar with the entrepreneurial process are more likely to avoid costly mistakes compared to founders without this experience.</li>
+        <li><strong>Relevant Industry Experience:</strong> Founders with this experience are more likely to have better-established professional networks and more applicable marketing and management skills.</li>
+        <li><strong>The Ability to "Network" Effectively:</strong> Having broad social and professional networks gives founders potential access to additional know-how, capital, and customer referrals.</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The five factors contributing to a founder's success, specifically contrasting solo founders vs. team founders.</li>
+          <li><strong>Why:</strong> Professors often test the empirical benefits of team-founded start-ups (resources, viewpoints) and the specific benefits of prior industry/entrepreneurial experience (avoiding mistakes, better networks).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m4t3">
+      <h2>Recruiting and Selecting Key Employees</h2>
+
+      <h3>Key Concepts and Definitions</h3>
+      <ul>
+        <li><strong>Recruiting Key Employees:</strong> Startups vary in how quickly they add personnel; some founders work alone for a period, while others hire employees immediately.</li>
+        <li><strong>Skills Profile:</strong> A chart that depicts the most important skills that are needed and where skills gaps exist in a new firm.</li>
+      </ul>
+
+      <h3>Case Study / Example: Skills Profile for New Venture Fitness Drinks</h3>
+      <p>The provided example maps out specific personnel against essential company functions to identify missing roles (gaps):</p>
+      <ul>
+        <li><em>Jack Petty</em> covers Executive Leadership.</li>
+        <li><em>Peggy Wells</em> covers Store Operations and Accounting and Finance.</li>
+        <li><em>Jill Petersen</em> covers Marketing and Sales.</li>
+        <li><em>Cameron Ivey</em> covers Supply Chain Management.</li>
+        <li><strong>Identified Gaps:</strong> The profile successfully highlights that the firm has no personnel for HR/Recruiting (Gap 1), Community Relations (Gap 2), and Franchise Operations (Gap 3), signaling exactly who needs to be recruited next. Information Systems is also listed as a category, though no specific gap or employee is marked in the provided excerpt.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The purpose and application of a "Skills Profile."</li>
+          <li><strong>Why:</strong> It represents a practical, applied management tool that entrepreneurs use to systematically grow their team without redundant hiring.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m4t4">
+      <h2>The Roles of the Board of Directors</h2>
+
+      <h3>Key Concepts and Definitions</h3>
+      <ul>
+        <li><strong>Board of Directors:</strong> A panel of individuals who are elected by a corporation's shareholders to oversee the management of the firm. It is legally required if a new venture organizes as a corporation.</li>
+        <li><strong>Inside Director:</strong> A person who is also an officer of the firm.</li>
+        <li><strong>Outside Director:</strong> Someone who is not employed by the firm.</li>
+      </ul>
+
+      <h3>List: Formal Responsibilities of the Board</h3>
+      <p>A board of directors has three formal responsibilities:</p>
+      <ol>
+        <li>Appoint the officers of the firm.</li>
+        <li>Declare dividends.</li>
+        <li>Oversee the affairs of the corporation.</li>
+      </ol>
+
+      <h3>Meeting Frequency and Compensation</h3>
+      <ul>
+        <li>Most boards of directors meet three to four times a year.</li>
+        <li>New ventures are more likely to pay board members in company stock or ask them to serve on a voluntary basis rather than paying a cash honorarium.</li>
+      </ul>
+
+      <h3>Framework: What a Board of Directors Can Do to Help a Start-Up</h3>
+      <p>Beyond formal responsibilities, the board provides critical strategic functions:</p>
+      <ul>
+        <li><strong>Provide Guidance:</strong> This is considered the board's most useful role, offering guidance and support to the firm's managers.</li>
+        <li><strong>Lend Legitimacy:</strong> Well-known and respected board members bring instant credibility to a firm, a concept also known as signaling.</li>
+      </ul>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The distinction between an inside vs. outside director, the three formal responsibilities of the board, and the concept of lending legitimacy/signaling.</li>
+          <li><strong>Why:</strong> The legal and structural definition of corporate boards is a staple of business exams. The dual purpose of the board (formal legal oversight vs. strategic guidance/credibility) is a crucial analytical concept.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m4t5">
+      <h2>Board of Advisors</h2>
+
+      <h3>Key Concepts and Definitions</h3>
+      <ul>
+        <li><strong>Board of Advisors:</strong> A panel of experts who are asked by a firm's managers to provide counsel and advice on an ongoing basis.</li>
+      </ul>
+
+      <h3>Concept Relationships: Board of Directors vs. Board of Advisors</h3>
+      <ul>
+        <li>Unlike a board of directors, an advisory board possesses <strong>no legal responsibility</strong> for the firm and gives strictly <strong>nonbinding advice</strong>.</li>
+        <li>Many people are more willing to serve on a board of advisors because it requires less time and carries no potential legal liability.</li>
+        <li>Similar to the board of directors, the board of advisors provides guidance and lends credibility to the firm.</li>
+      </ul>
+
+      <h3>List: Guidelines for Organizing a Board of Advisors</h3>
+      <ol>
+        <li>Ensure advisors play a meaningful role in the firm's development and growth, otherwise they will become disappointed.</li>
+        <li>Look for board members who are compatible and complement one another in terms of experience and expertise.</li>
+        <li>Carefully spell out the rules regarding access to confidential information when inviting individuals to serve.</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The exact differences between a Board of Directors and a Board of Advisors.</li>
+          <li><strong>Why:</strong> This is a classic compare-and-contrast exam question. Students must know that advisors have no legal liability and offer nonbinding advice, making them easier to recruit for early-stage startups.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="m4t6">
+      <h2>Lenders, Investors, and Other Professionals</h2>
+
+      <h3>Key Concepts and Definitions</h3>
+      <ul>
+        <li><strong>Lenders and Investors:</strong> Because they have a vested financial interest in the companies they finance, they often become very involved in helping the firms fund. They assume a natural role in providing financial oversight and lending advice.</li>
+        <li><strong>Other Professionals:</strong> This group includes attorneys, accountants, and business consultants.</li>
+        <li><strong>Business Consultant:</strong> An individual who gives professional or expert advice. They fall into two categories: paid consultants, and consultants available for free or at a reduced rate through a nonprofit governmental agency.</li>
+      </ul>
+
+      <h3>List: Ways Lenders and Investors Add Value to an Entrepreneurial Firm</h3>
+      <ol>
+        <li>Help identify and recruit key management personnel.</li>
+        <li>Provide insight into the markets that the new venture plans to enter.</li>
+        <li>Help the venture fine-tune its business model.</li>
+        <li>Serve as a sounding board for new ideas.</li>
+        <li>Provide introductions to additional sources of capital.</li>
+        <li>Serve on the new venture's board of directors or board of advisors.</li>
+        <li>Recruit customers.</li>
+        <li>Help to arrange business partnerships.</li>
+        <li>Provide a sense of stability and calm.</li>
+      </ol>
+
+      <div class="exam-focus">
+        <div class="exam-focus-title">Exam Focus</div>
+        <ul>
+          <li><strong>Most likely to be tested:</strong> The value-added roles of lenders and investors beyond just providing money.</li>
+          <li><strong>Why:</strong> It highlights the concept of "smart money" in entrepreneurship&mdash;investors aren't just a bank; they act as recruiters, networkers, and strategic partners. Testing this ensures students understand the broader ecosystem of a startup's team.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="word-count-footer" id="wordCountFooter"></div>
+</main>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})" aria-label="Back to top">&#8593;</button>
+
+<script>
+// Dark mode
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+// Progress bar
+window.addEventListener('scroll', function() {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('progressFill').style.width = (winScroll / height * 100) + '%';
+  // Back to top
+  document.getElementById('backToTop').classList.toggle('visible', winScroll > 400);
+});
+
+// Sidebar toggle sections
+function toggleSection(el) {
+  el.classList.toggle('collapsed');
+  const links = el.nextElementSibling;
+  links.style.display = links.style.display === 'none' ? '' : 'none';
+}
+
+// Active sidebar link on scroll
+const sections = document.querySelectorAll('section[id], .module[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sidebarLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector('.sidebar-link[href="#' + entry.target.id + '"]');
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-80px 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Close mobile sidebar on link click
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+
+// Search
+function handleSearch(query) {
+  const modules = document.querySelectorAll('.module');
+  const noResults = document.getElementById('noResults');
+  // Remove old marks
+  document.querySelectorAll('mark').forEach(m => {
+    m.replaceWith(m.textContent);
+  });
+  if (!query.trim()) {
+    modules.forEach(m => m.style.display = '');
+    noResults.style.display = 'none';
+    return;
+  }
+  const q = query.toLowerCase();
+  let found = false;
+  modules.forEach(mod => {
+    const text = mod.textContent.toLowerCase();
+    if (text.includes(q)) {
+      mod.style.display = '';
+      found = true;
+      // Highlight matches
+      highlightText(mod, query);
+    } else {
+      mod.style.display = 'none';
+    }
+  });
+  noResults.style.display = found ? 'none' : 'block';
+}
+
+function highlightText(el, query) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  nodes.forEach(node => {
+    if (node.parentNode.tagName === 'MARK' || node.parentNode.tagName === 'SCRIPT') return;
+    if (re.test(node.textContent)) {
+      const span = document.createElement('span');
+      span.innerHTML = node.textContent.replace(re, '<mark>$1</mark>');
+      node.parentNode.replaceChild(span, node);
+    }
+  });
+}
+
+// Word count
+(function() {
+  const main = document.getElementById('mainContent');
+  const allText = main.textContent || main.innerText;
+  const words = allText.trim().split(/\s+/).filter(w => w.length > 0).length;
+  document.getElementById('wordCountFooter').textContent =
+    'Total words rendered on site: ' + words.toLocaleString() + ' | Source files total: 7,761 words';
+})();
+</script>
+</body>
+</html>
