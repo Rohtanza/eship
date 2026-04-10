@@ -1,9 +1,0 @@
-{
-  "name": "entrepreneurship-study-guide",
-  "version": "1.0.0",
-  "description": "Entrepreneurship course study guide",
-  "scripts": {
-    "build": "echo 'Static site - no build needed'",
-    "start": "npx serve public -l 3000"
-  }
-}

@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EHIP Study Hub — Entrepreneurship Exam Prep</title>
+<meta name="description" content="Interactive study guide for Entrepreneurship: Industry Analysis, Business Plans, Financial Management, and New-Venture Teams. Flashcards, self-tests, and exam focus cards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN SYSTEM TOKENS
+   ═══════════════════════════════════════════ */
+:root {
+  /* Colors - Dark */
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1a2235;
+  --bg-card: #151d2e;
+  --bg-card-hover: #1c2740;
+  --bg-glass: rgba(17,24,39,0.85);
+  --bg-sidebar: #0d1220;
+  --text-primary: #e8ecf4;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: rgba(148,163,184,0.12);
+  --border-active: rgba(99,102,241,0.5);
+  /* Accent palette */
+  --accent-indigo: #818cf8;
+  --accent-indigo-bg: rgba(99,102,241,0.12);
+  --accent-violet: #a78bfa;
+  --accent-violet-bg: rgba(139,92,246,0.12);
+  --accent-emerald: #34d399;
+  --accent-emerald-bg: rgba(16,185,129,0.1);
+  --accent-amber: #fbbf24;
+  --accent-amber-bg: rgba(251,191,36,0.1);
+  --accent-rose: #fb7185;
+  --accent-rose-bg: rgba(244,63,94,0.1);
+  --accent-cyan: #22d3ee;
+  --accent-cyan-bg: rgba(34,211,238,0.1);
+  --accent-orange: #fb923c;
+  --accent-orange-bg: rgba(251,146,60,0.1);
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.35);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.45);
+  --shadow-glow-indigo: 0 0 20px rgba(99,102,241,0.15);
+  --shadow-glow-amber: 0 0 20px rgba(251,191,36,0.15);
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  /* Transition */
+  --transition-fast: 150ms cubic-bezier(0.4,0,0.2,1);
+  --transition-normal: 250ms cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: 400ms cubic-bezier(0.4,0,0.2,1);
+  /* Layout */
+  --sidebar-width: 280px;
+  --header-height: 64px;
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-glass: rgba(255,255,255,0.9);
+  --bg-sidebar: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border-color: rgba(0,0,0,0.08);
+  --border-active: rgba(99,102,241,0.4);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--accent-indigo); text-decoration: none; }
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  z-index: 100;
+  display: flex; flex-direction: column;
+  transition: transform var(--transition-normal);
+  overflow: hidden;
+}
+.sidebar-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  font-size: 1.15rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: -0.02em;
+}
+.sidebar-logo span { font-weight: 500; opacity: .7; }
+.sidebar-nav {
+  flex: 1; overflow-y: auto; padding: 12px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+.sidebar-nav::-webkit-scrollbar { width: 4px; }
+.sidebar-nav::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+.nav-module-label {
+  padding: 8px 12px 4px;
+  font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.nav-link {
+  display: block;
+  padding: 7px 12px;
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+}
+.nav-link:hover { background: var(--accent-indigo-bg); color: var(--accent-indigo); }
+.nav-link.active { background: var(--accent-indigo-bg); color: var(--accent-indigo); font-weight: 600; }
+
+/* Main area */
+.main-area {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+
+/* Header */
+.top-header {
+  position: sticky; top: 0;
+  height: var(--header-height);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 28px;
+  z-index: 90;
+}
+.menu-btn {
+  display: none;
+  background: none; border: none; color: var(--text-primary);
+  cursor: pointer; padding: 6px; border-radius: var(--radius-sm);
+}
+.menu-btn:hover { background: var(--accent-indigo-bg); }
+.menu-btn svg { width: 22px; height: 22px; }
+
+/* Search */
+.search-container {
+  position: relative; flex: 1; max-width: 420px;
+}
+.search-input {
+  width: 100%;
+  padding: 9px 14px 9px 38px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.85rem; font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: var(--accent-indigo); box-shadow: var(--shadow-glow-indigo); }
+.search-icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--text-muted); pointer-events: none;
+}
+.search-icon svg { width: 16px; height: 16px; }
+
+/* Header controls */
+.header-controls { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.toggle-group {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 14px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+.toggle-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+.toggle-switch {
+  position: relative; width: 38px; height: 20px;
+  background: var(--bg-primary); border-radius: 12px;
+  cursor: pointer; transition: background var(--transition-fast);
+  border: 1px solid var(--border-color);
+}
+.toggle-switch.active { background: var(--accent-indigo); border-color: var(--accent-indigo); }
+.toggle-switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #fff; transition: transform var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.toggle-switch.active::after { transform: translateX(18px); }
+
+.icon-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  background: var(--bg-tertiary); border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm); cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+.icon-btn:hover { background: var(--accent-indigo-bg); color: var(--accent-indigo); }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* Content */
+.content-area {
+  flex: 1; padding: 32px 36px 64px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════
+   MODULE SECTION
+   ═══════════════════════════════════════════ */
+.module-section {
+  margin-bottom: 56px;
+  animation: fadeUp 0.5s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.module-title {
+  font-size: 1.6rem; font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.module-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
+
+.topic-section { margin-bottom: 40px; }
+.topic-heading {
+  font-size: 1.15rem; font-weight: 700; color: var(--text-primary);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+}
+.topic-heading::after {
+  content: ''; position: absolute; bottom: -2px; left: 0;
+  width: 48px; height: 2px;
+  background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+}
+
+/* ═══════════════════════════════════════════
+   EXAM FOCUS CARD (always visible)
+   ═══════════════════════════════════════════ */
+.exam-focus-card {
+  background: linear-gradient(135deg, var(--accent-amber-bg), var(--accent-orange-bg));
+  border: 1px solid rgba(251,191,36,0.25);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-glow-amber);
+  position: relative;
+  overflow: hidden;
+}
+.exam-focus-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent-amber), var(--accent-orange));
+}
+.exam-focus-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(251,191,36,0.2);
+  color: var(--accent-amber);
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 3px 10px; border-radius: 20px;
+  margin-bottom: 10px;
+}
+.exam-focus-badge svg { width: 13px; height: 13px; }
+.exam-focus-card p {
+  font-size: 0.88rem; color: var(--text-primary); line-height: 1.65;
+  margin-bottom: 6px;
+}
+.exam-focus-card strong { color: var(--accent-amber); }
+
+/* ═══════════════════════════════════════════
+   FLASHCARD
+   ═══════════════════════════════════════════ */
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.flashcard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  min-height: 90px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.flashcard:hover {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-glow-indigo);
+  transform: translateY(-2px);
+}
+.flashcard-term {
+  font-size: 0.9rem; font-weight: 700; color: var(--accent-indigo);
+  margin-bottom: 4px;
+}
+.flashcard-hint {
+  font-size: 0.7rem; color: var(--text-muted); font-style: italic;
+}
+.flashcard-definition {
+  font-size: 0.84rem; color: var(--text-secondary); line-height: 1.6;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height var(--transition-slow), opacity var(--transition-normal), margin var(--transition-normal);
+}
+.flashcard.revealed .flashcard-definition {
+  max-height: 300px; opacity: 1; margin-top: 10px;
+}
+.flashcard.revealed .flashcard-hint { display: none; }
+.flashcard-tag {
+  position: absolute; top: 10px; right: 12px;
+  font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 10px;
+  background: var(--accent-indigo-bg); color: var(--accent-indigo);
+}
+
+/* Quick-review compact flashcard */
+.quick-review .flashcard { min-height: auto; padding: 10px 14px; }
+.quick-review .flashcard-definition { max-height: none !important; opacity: 1 !important; margin-top: 4px !important; }
+.quick-review .flashcard-hint { display: none; }
+.quick-review .flashcard-definition { font-size: 0.78rem; }
+
+/* ═══════════════════════════════════════════
+   ACCORDION (Frameworks / Models)
+   ═══════════════════════════════════════════ */
+.accordion {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: border-color var(--transition-fast);
+}
+.accordion:hover { border-color: var(--border-active); }
+.accordion-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  background: transparent;
+  border: none; width: 100%;
+  text-align: left;
+  color: var(--text-primary);
+  font-family: inherit; font-size: 0.92rem; font-weight: 600;
+  transition: background var(--transition-fast);
+}
+.accordion-header:hover { background: var(--bg-card-hover); }
+.accordion-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; flex-shrink: 0;
+  border-radius: 6px;
+  background: var(--accent-violet-bg);
+  color: var(--accent-violet);
+  transition: transform var(--transition-normal);
+}
+.accordion-icon svg { width: 14px; height: 14px; }
+.accordion.open .accordion-icon { transform: rotate(90deg); }
+.accordion-badge {
+  margin-left: auto;
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 8px; border-radius: 10px;
+  background: var(--accent-violet-bg); color: var(--accent-violet);
+}
+.accordion-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+.accordion.open .accordion-body { max-height: 3000px; }
+.accordion-content {
+  padding: 0 18px 18px;
+  font-size: 0.86rem; color: var(--text-secondary); line-height: 1.7;
+}
+.accordion-content ul { padding-left: 20px; margin: 8px 0; }
+.accordion-content li { margin-bottom: 5px; }
+.accordion-content strong { color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════
+   STEPPER (numbered steps)
+   ═══════════════════════════════════════════ */
+.stepper {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.stepper-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  background: transparent;
+  border: none; width: 100%;
+  text-align: left;
+  color: var(--text-primary);
+  font-family: inherit; font-size: 0.92rem; font-weight: 600;
+}
+.stepper-header:hover { background: var(--bg-card-hover); }
+.stepper-count {
+  margin-left: auto;
+  font-size: 0.7rem; font-weight: 600;
+  color: var(--accent-emerald); background: var(--accent-emerald-bg);
+  padding: 2px 8px; border-radius: 10px;
+}
+.stepper-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; flex-shrink: 0;
+  border-radius: 6px;
+  background: var(--accent-emerald-bg);
+  color: var(--accent-emerald);
+  transition: transform var(--transition-normal);
+}
+.stepper-icon svg { width: 14px; height: 14px; }
+.stepper.open .stepper-icon { transform: rotate(90deg); }
+.stepper-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+.stepper.open .stepper-body { max-height: 3000px; }
+.stepper-content {
+  padding: 0 18px 18px 18px;
+}
+.step-item {
+  display: flex; gap: 14px;
+  padding: 10px 0;
+  position: relative;
+}
+.step-item:not(:last-child)::before {
+  content: ''; position: absolute;
+  left: 15px; top: 38px; bottom: -2px;
+  width: 2px; background: var(--border-color);
+}
+.step-number {
+  width: 30px; height: 30px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-emerald-bg);
+  color: var(--accent-emerald);
+  font-size: 0.75rem; font-weight: 700;
+  border: 2px solid rgba(52,211,153,0.3);
+}
+.step-text {
+  font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;
+  padding-top: 4px;
+}
+.step-text strong { color: var(--text-primary); }
+
+/* ═══════════════════════════════════════════
+   CONTENT BLOCKS (examples, relationships)
+   ═══════════════════════════════════════════ */
+.content-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  font-size: 0.86rem; color: var(--text-secondary); line-height: 1.7;
+}
+.content-block-label {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  padding: 2px 8px; border-radius: 10px;
+}
+.label-example { background: var(--accent-cyan-bg); color: var(--accent-cyan); }
+.label-relationship { background: var(--accent-rose-bg); color: var(--accent-rose); }
+.label-insight { background: var(--accent-violet-bg); color: var(--accent-violet); }
+.content-block ul { padding-left: 18px; margin-top: 6px; }
+.content-block li { margin-bottom: 4px; }
+.content-block strong { color: var(--text-primary); }
+
+/* Hide in quick review mode */
+.quick-review .content-block,
+.quick-review .accordion,
+.quick-review .stepper {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════
+   SELF-TEST SECTION
+   ═══════════════════════════════════════════ */
+.self-test-section {
+  margin-top: 36px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.self-test-header {
+  padding: 16px 22px;
+  background: linear-gradient(135deg, var(--accent-rose-bg), var(--accent-violet-bg));
+  border-bottom: 1px solid var(--border-color);
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+}
+.self-test-header h3 {
+  font-size: 1rem; font-weight: 700; color: var(--text-primary); flex: 1;
+}
+.self-test-badge {
+  font-size: 0.68rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+  background: var(--accent-rose-bg); color: var(--accent-rose);
+}
+.self-test-body { padding: 6px 0; }
+.self-test-body.collapsed { display: none; }
+.test-question {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border-bottom: 1px solid var(--border-color);
+}
+.test-question:last-child { border-bottom: none; }
+.test-question:hover { background: var(--bg-card-hover); }
+.test-q-num {
+  width: 26px; height: 26px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-rose-bg); color: var(--accent-rose);
+  font-size: 0.72rem; font-weight: 700;
+}
+.test-q-text {
+  flex: 1;
+}
+.test-q-text .question {
+  font-size: 0.88rem; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.test-q-text .answer {
+  font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height var(--transition-slow), opacity var(--transition-normal), margin var(--transition-normal);
+}
+.test-question.revealed .answer {
+  max-height: 300px; opacity: 1; margin-top: 6px;
+}
+.test-q-text .tap-hint {
+  font-size: 0.68rem; color: var(--text-muted); font-style: italic;
+}
+.test-question.revealed .tap-hint { display: none; }
+
+/* ═══════════════════════════════════════════
+   SEARCH RESULTS HIGHLIGHT
+   ═══════════════════════════════════════════ */
+.search-match {
+  background: rgba(251,191,36,0.25);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+.search-hidden { display: none !important; }
+
+/* ═══════════════════════════════════════════
+   MOBILE OVERLAY
+   ═══════════════════════════════════════════ */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+.sidebar-overlay.show { display: block; }
+
+/* ═══════════════════════════════════════════
+   SCROLL-TO-TOP
+   ═══════════════════════════════════════════ */
+.scroll-top-btn {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 44px; height: 44px;
+  background: var(--accent-indigo);
+  border: none; border-radius: 50%;
+  color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  z-index: 80;
+}
+.scroll-top-btn.show { opacity: 1; pointer-events: auto; }
+.scroll-top-btn:hover { transform: scale(1.1); }
+.scroll-top-btn svg { width: 20px; height: 20px; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .content-area { padding: 24px 20px 48px; }
+}
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-area { margin-left: 0; }
+  .menu-btn { display: flex; }
+  .top-header { padding: 0 16px; }
+  .content-area { padding: 20px 16px 40px; }
+  .flashcard-grid { grid-template-columns: 1fr; }
+  .toggle-group .toggle-label { display: none; }
+  .module-title { font-size: 1.3rem; }
+}
+@media (max-width: 480px) {
+  .header-controls { gap: 4px; }
+  .toggle-group { padding: 4px 8px; }
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200;
+  background: transparent;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+  width: 0%;
+  transition: width 100ms linear;
+}
+</style>
+</head>
+<body>
+<!-- Progress bar -->
+<div class="progress-bar"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<div class="app-layout">
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">EHIP <span>Study Hub</span></div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <!-- Module 1 -->
+    <div class="nav-module-label">Module 1 — Industry &amp; Competitor</div>
+    <a href="#m1t1" class="nav-link" data-target="m1t1">Introduction to Industry Analysis</a>
+    <a href="#m1t2" class="nav-link" data-target="m1t2">Five Competitive Forces Model</a>
+    <a href="#m1t3" class="nav-link" data-target="m1t3">Industry Types &amp; Opportunities</a>
+    <a href="#m1t4" class="nav-link" data-target="m1t4">Competitor Analysis</a>
+    <!-- Module 2 -->
+    <div class="nav-module-label">Module 2 — Business Plans</div>
+    <a href="#m2t1" class="nav-link" data-target="m2t1">Intro to Business Plans</a>
+    <a href="#m2t2" class="nav-link" data-target="m2t2">Writing Guidelines</a>
+    <a href="#m2t3" class="nav-link" data-target="m2t3">Types of Business Plans</a>
+    <a href="#m2t4" class="nav-link" data-target="m2t4">Outline of a Business Plan</a>
+    <a href="#m2t5" class="nav-link" data-target="m2t5">Executive Summary</a>
+    <a href="#m2t6" class="nav-link" data-target="m2t6">Company Description</a>
+    <a href="#m2t7" class="nav-link" data-target="m2t7">Industry Analysis (Section)</a>
+    <a href="#m2t8" class="nav-link" data-target="m2t8">Market Analysis</a>
+    <a href="#m2t9" class="nav-link" data-target="m2t9">Marketing Plan</a>
+    <a href="#m2t10" class="nav-link" data-target="m2t10">Management Team &amp; Structure</a>
+    <a href="#m2t11" class="nav-link" data-target="m2t11">Operations Plan</a>
+    <a href="#m2t12" class="nav-link" data-target="m2t12">Product Design &amp; Dev Plan</a>
+    <a href="#m2t13" class="nav-link" data-target="m2t13">Financial Projections</a>
+    <a href="#m2t14" class="nav-link" data-target="m2t14">Presenting to Investors</a>
+    <!-- Module 3 -->
+    <div class="nav-module-label">Module 3 — Financial Management</div>
+    <a href="#m3t1" class="nav-link" data-target="m3t1">Intro to Financial Mgmt</a>
+    <a href="#m3t2" class="nav-link" data-target="m3t2">Forms of Business Ownership</a>
+    <a href="#m3t3" class="nav-link" data-target="m3t3">Ownership Forms: Details</a>
+    <a href="#m3t4" class="nav-link" data-target="m3t4">Franchising</a>
+    <a href="#m3t5" class="nav-link" data-target="m3t5">Financial Mgmt Core Concepts</a>
+    <a href="#m3t6" class="nav-link" data-target="m3t6">Process of Financial Mgmt</a>
+    <a href="#m3t7" class="nav-link" data-target="m3t7">Statements &amp; Ratio Analysis</a>
+    <!-- Module 4 -->
+    <div class="nav-module-label">Module 4 — New-Venture Teams</div>
+    <a href="#m4t1" class="nav-link" data-target="m4t1">Intro &amp; Liabilities of Newness</a>
+    <a href="#m4t2" class="nav-link" data-target="m4t2">The Founder(s)</a>
+    <a href="#m4t3" class="nav-link" data-target="m4t3">Recruiting Key Employees</a>
+    <a href="#m4t4" class="nav-link" data-target="m4t4">Board of Directors</a>
+    <a href="#m4t5" class="nav-link" data-target="m4t5">Board of Advisors</a>
+    <a href="#m4t6" class="nav-link" data-target="m4t6">Lenders, Investors &amp; Pros</a>
+  </nav>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main-area">
+  <header class="top-header">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <div class="search-container">
+      <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search terms, topics, definitions…">
+    </div>
+    <div class="header-controls">
+      <div class="toggle-group">
+        <span class="toggle-label">Quick Review</span>
+        <div class="toggle-switch" id="quickReviewToggle" role="switch" aria-checked="false" tabindex="0"></div>
+      </div>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="content-area" id="contentArea">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODULE 1: INDUSTRY & COMPETITOR ANALYSIS (file1.md)
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="module-section" id="module1">
+  <h1 class="module-title">Chapter 5: Industry &amp; Competitor Analysis</h1>
+  <p class="module-subtitle">Source: file1.md — Frameworks, forces, and competitive positioning</p>
+
+  <!-- ─── Topic 1 ─── -->
+  <div class="topic-section" id="m1t1">
+    <h2 class="topic-heading">Topic 1: Introduction to Industry Analysis</h2>
+
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What to expect:</strong> The distinction between firm-level and industry-level factors, and the percentage (8–30%) of profitability variation attributed to the industry.</p>
+      <p><strong>Why:</strong> Instructors often test on the fundamental justification for <em>why</em> industry analysis matters before launching a venture. Be prepared to identify the "Three Key Questions" an entrepreneur must ask before entering an industry.</p>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Industry</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A group of firms producing a similar product or service.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Industry Analysis</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Business research that focuses on the potential of an industry.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Firm-Level Factors</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Factors that include a firm's assets, products, culture, teamwork among its employees, reputation, and other resources.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Industry-Level Factors</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Factors that include the threat of new entrants, rivalry among existing firms, bargaining power of buyers, and related factors.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Environmental Trends</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Shifts in the external environment, including economic trends, social trends, technological advances, and political and regulatory changes.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Business Trends</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Other trends that impact an industry, such as increasing/falling profit margins, accelerating/waning innovation, or rising/falling input costs.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Purpose and Importance of Industry Analysis
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Once a new venture is determined to be feasible in regard to its market, a more in-depth analysis is required to learn the ins and outs of the industry. This analysis helps a firm determine if the specific niche market it identified during the feasibility stage is favorable for a new firm.</p>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Three Key Questions for Entrepreneurs
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Before pursuing the idea of starting a firm, an entrepreneur must answer three questions:</p>
+        <ul>
+          <li><strong>1.</strong> Is the industry accessible—in other words, is it a realistic place for a new venture to enter?</li>
+          <li><strong>2.</strong> Does the industry contain markets that are ripe for innovation or are underserved?</li>
+          <li><strong>3.</strong> Are there positions in the industry that avoid some of the negative attributes of the industry as a whole?</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Techniques to Assess Industry Attractiveness
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Entrepreneurs have two primary techniques available to assess how attractive an industry is:</p>
+        <ul>
+          <li><strong>1.</strong> Study Environmental and Business Trends.</li>
+          <li><strong>2.</strong> The Five Competitive Forces Model.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship</div>
+      <p><strong>Performance Variables:</strong> A firm's performance is affected by both <strong>Firm-Level Factors</strong> and <strong>Industry-Level Factors</strong>. Researchers have found that 8% to 30% of the variation in firm profitability is directly attributable to the specific industry in which a firm competes.</p>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-example">Examples</div>
+      <ul>
+        <li><em>Industries:</em> Airlines, fitness drinks, furniture, and electronic games.</li>
+        <li><em>Environmental Trends:</em> Industries that sell products to senior citizens are currently benefiting heavily from the social trend of an aging population.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ─── Topic 2 ─── -->
+  <div class="topic-section" id="m1t2">
+    <h2 class="topic-heading">Topic 2: The Five Competitive Forces Model</h2>
+
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What to expect:</strong> You will almost certainly be tested on the definitions of all Five Forces and the differences between traditional and nontraditional barriers to entry.</p>
+      <p><strong>Why:</strong> The Five Forces Model is the foundational framework of this entire chapter. Knowing how start-ups specifically use <em>nontraditional</em> barriers (since they lack the capital for traditional ones) is a critical concept for entrepreneurship exams.</p>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">The Five Competitive Forces Model</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A framework for understanding the structure of an industry, composed of the forces that determine industry profitability.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Barrier to Entry</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A condition that creates a disincentive for a new firm to enter an industry.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Switching Costs</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The fixed costs that buyers encounter when switching or changing from one supplier to another.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Overview of the Five Forces Model
+        <span class="accordion-badge">Model</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>The five forces apply pressure on industry profitability and help determine the average rate of return for the firms in that industry. Well-managed firms attempt to position themselves to avoid or diminish these forces to beat the industry's average rate of return.</p>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Force 1: Threat of Substitutes
+        <span class="accordion-badge">Force</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li>The price consumers are willing to pay depends partly on the availability of substitute products.</li>
+          <li>When close substitutes exist, industry profitability is suppressed because consumers will opt out if prices get too high.</li>
+          <li>The extent of this suppression depends on the tendency of buyers to substitute between alternatives. Firms often offer conveniences to reduce the likelihood of customers switching.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Force 2: Threat of New Entrants
+        <span class="accordion-badge">Force</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Highly profitable industries become magnets for new entrants; unless stopped, competition increases and average industry profitability declines. Firms use <strong>Barriers to Entry</strong> to keep the number of new entrants low.</p>
+        <p><strong>Traditional Barriers to Entry:</strong></p>
+        <ul>
+          <li><em>Economies of Scale:</em> Hard for new firms to enter without accepting a cost disadvantage.</li>
+          <li><em>Product Differentiation:</em> Hard to break into industries with strong brands without heavy advertising spend.</li>
+          <li><em>Capital Requirements:</em> The need for large monetary investments to gain entrance.</li>
+          <li><em>Cost Advantages Independent of Size:</em> Existing firms may have advantages like having purchased land when it was cheaper.</li>
+          <li><em>Access to Distribution Channels:</em> Often hard to crack, particularly in crowded markets.</li>
+          <li><em>Government and Legal Barriers:</em> Industries requiring licenses granted by public authorities.</li>
+        </ul>
+        <p><strong>Nontraditional Barriers to Entry (Crucial for Start-ups):</strong></p>
+        <ul>
+          <li><em>Strength of Management Team:</em> A world-class team gives potential rivals pause.</li>
+          <li><em>First-Mover Advantage:</em> Pioneering a new concept establishes strong name recognition.</li>
+          <li><em>Passion of the Management Team and Employees:</em> A unique, highly motivated culture anticipating large rewards cannot be easily replicated by large firms.</li>
+          <li><em>Unique Business Model:</em> Establishing a unique network of relationships makes the business model difficult to copy.</li>
+          <li><em>Inventing a New Approach to an Industry:</em> Executing a new approach in an exemplary fashion prevents imitation.</li>
+          <li><em>Internet Domain Name:</em> A "spot-on" domain name offers a meaningful advantage in e-commerce.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Force 3: Rivalry Among Existing Firms
+        <span class="accordion-badge">Force</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>This is the major determinant of industry profitability in most industries. Some industries are so competitive that prices fall below costs, causing industry-wide losses, while others see subdued price competition.</p>
+        <p><strong>Factors determining rivalry intensity:</strong></p>
+        <ul>
+          <li>Number and balance of competitors (more competitors = more price-cutting).</li>
+          <li>Degree of difference between products.</li>
+          <li>Growth rate of an industry (competition is stronger in slow-growth industries).</li>
+          <li>Level of fixed costs (high fixed costs require higher sales volumes to break even).</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Force 4: Bargaining Power of Suppliers
+        <span class="accordion-badge">Force</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Suppliers can suppress industry profitability by raising prices or reducing the quality of components.</p>
+        <p><strong>Factors enhancing supplier power:</strong></p>
+        <ul>
+          <li>Supplier concentration (few suppliers serving many buyers).</li>
+          <li>High switching costs.</li>
+          <li>Lack of attractive substitutes for the supplier's product.</li>
+          <li>Threat of forward integration (credible threat the supplier might enter the buyer's industry).</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Force 5: Bargaining Power of Buyers
+        <span class="accordion-badge">Force</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Buyers suppress profitability by demanding price concessions or quality increases.</p>
+        <p><strong>Factors enhancing buyer power:</strong></p>
+        <ul>
+          <li>Buyer group concentration (few large buyers purchasing from many suppliers).</li>
+          <li>Buyer's costs (higher importance of an item makes the buyer more price-sensitive).</li>
+          <li>Degree of standardization of supplier's products.</li>
+          <li>Threat of backward integration (credible threat the buyer might enter the supplier's industry).</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Assessing Industry Attractiveness (Steps)
+        <span class="stepper-count">4 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Select an industry.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Determine the level of threat to industry profitability for each of the forces (low, medium, or high).</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Use the table to get an overall feel for the attractiveness of the industry.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Use the table to identify the threats that are most often relevant to industry profitability. <strong>Outcome:</strong> If several threats are high, reconsider entering or think carefully about market positioning.</div></div>
+      </div></div>
+    </div>
+
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Projecting Success of a New Venture (Steps)
+        <span class="stepper-count">3 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Is the industry a realistic place for a new venture? (If No → Reconsider new venture. If Yes → proceed).</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Answer the following three questions: Are there areas in which we can avoid or diminish the factors that suppress industry profitability? Is there a unique position in the industry that avoids or diminishes the factors that suppress industry profitability? Is there a superior business model that industry incumbents would find hard to duplicate?</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text"><strong>Outcome:</strong> A positive response to <em>any</em> of those three increases the likelihood of success; a negative response to <em>all</em> three indicates reconsidering the venture.</div></div>
+      </div></div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-example">Examples</div>
+      <ul>
+        <li><em>Substitutes:</em> Prescription medicines are highly profitable because they have few substitutes.</li>
+        <li><em>Substitutes (Mitigation):</em> Starbucks offers high-quality fresh coffee, good service, and a pleasant atmosphere to prevent customers from getting cheaper coffee elsewhere.</li>
+        <li><em>Product Differentiation Barrier:</em> Soft drink industry requires heavy advertising to break into.</li>
+        <li><em>Distribution Channel Barrier:</em> Convenience store markets are notoriously crowded and hard to crack.</li>
+        <li><em>Government Barriers:</em> Broadcasting requires a license from a public authority.</li>
+        <li><em>Buyer Power:</em> The automobile industry consists of a handful of large companies buying from thousands of suppliers, allowing automakers to demand price reductions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ─── Topic 3 ─── -->
+  <div class="topic-section" id="m1t3">
+    <h2 class="topic-heading">Topic 3: Industry Types and the Opportunities They Offer</h2>
+
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What to expect:</strong> Matching questions. You will likely need to match the "Industry Type" to its corresponding "Opportunity."</p>
+      <p><strong>Why:</strong> Identifying the correct strategy based on the industry's condition is a core competency for an entrepreneur assessing a new market.</p>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Industry Life Cycle Types &amp; Opportunities
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>The life cycle and structure of an industry dictate the types of opportunities available to new ventures:</p>
+        <ul>
+          <li><strong>Emerging Industries:</strong> Industries in which standard operating procedures have yet to be developed. <em>Opportunity:</em> First-mover advantage.</li>
+          <li><strong>Fragmented Industries:</strong> Industries characterized by a large number of firms of approximately equal size. <em>Opportunity:</em> Consolidation.</li>
+          <li><strong>Mature Industries:</strong> Industries experiencing slow or no increase in demand. <em>Opportunities:</em> Process innovation and after-sale service innovation.</li>
+          <li><strong>Declining Industries:</strong> Industries experiencing a reduction in demand. <em>Opportunities:</em> Leadership, establishing a niche market, and pursuing a cost reduction strategy.</li>
+          <li><strong>Global Industries:</strong> Industries experiencing significant international sales. <em>Opportunities:</em> Multidomestic and global strategies.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship</div>
+      <p>There is a direct correlation between the <strong>life-cycle stage/structure</strong> of an industry (e.g., emerging vs. declining) and the specific <strong>strategic opportunities</strong> that are viable for an entrepreneur.</p>
+    </div>
+  </div>
+
+  <!-- ─── Topic 4 ─── -->
+  <div class="topic-section" id="m1t4">
+    <h2 class="topic-heading">Topic 4: Competitor Analysis</h2>
+
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What to expect:</strong> Differentiating between direct, indirect, and future competitors, and identifying acceptable (ethical) methods of gathering competitive intelligence.</p>
+      <p><strong>Why:</strong> Business ethics is a critical component of modern business education. Instructors frequently test whether students can distinguish between standard competitive intelligence and unethical corporate espionage. Furthermore, understanding indirect vs direct competitors demonstrates a deep understanding of the "Threat of Substitutes" force.</p>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Competitor Analysis</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A detailed analysis of a firm's competition that helps a firm understand the positions of its major competitors and the opportunities that are available.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Competitive Intelligence</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The information that is gathered by a firm to learn about its competitors' strategies and behaviors.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Competitive Analysis Grid</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A tool for organizing the information a firm collects about its competitors.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Types of Competitors
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>Direct Competitors:</strong> Businesses offering identical or similar products.</li>
+          <li><strong>Indirect Competitors:</strong> Businesses offering close substitute products.</li>
+          <li><strong>Future Competitors:</strong> Businesses that are not yet direct or indirect competitors but could be at any time.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Collecting Competitive Intelligence (Ethical Methods)
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>Firms must understand competitors' behaviors and strategies before completing an analysis grid. Crucially, ventures must collect this information in a professional and ethical manner.</p>
+        <p><strong>List of Ethical Ways to Obtain Information:</strong></p>
+        <ul>
+          <li>Attend conferences and trade shows.</li>
+          <li>Purchase competitor's products.</li>
+          <li>Study competitors' Web sites.</li>
+          <li>Set up Google and Yahoo! e-mail alerts.</li>
+          <li>Read industry-related books, magazines, and Web sites.</li>
+          <li>Talk to customers about what motivated them to buy your product as opposed to your competitor's product.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Completing a Competitive Analysis Grid
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>This tool helps a firm see how it stacks up against competitors, identifies primary sources of competitive advantage, and provides ideas for markets to pursue.</p>
+        <p><strong>Grid Components:</strong> It maps the firm against several competitors across key performance metrics, rating them as an "Advantage," "Disadvantage," or "Even".</p>
+      </div></div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-example">Examples</div>
+      <ul>
+        <li><em>Competitive Intelligence:</em> Companies attended the 2008 Consumer Electronics Trade Show in Las Vegas not only to display their own products but to see what their competitors were doing.</li>
+        <li><em>Case Study - Competitive Analysis Grid for Expresso Fitness:</em> Expresso Fitness mapped itself against competitors Cybex, Star Trec, Nautilus, and Life Fitness. They compared themselves across the following criteria: Product features, User engagement, Durability, User feedback, Health benefits, Price, and Customer service.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Self-Test Module 1 -->
+  <div class="self-test-section">
+    <div class="self-test-header" onclick="toggleSelfTest(this)">
+      <h3>🧠 Self-Test: Module 1 — Industry &amp; Competitor Analysis</h3>
+      <span class="self-test-badge">12 questions</span>
+    </div>
+    <div class="self-test-body collapsed">
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">1</div>
+        <div class="test-q-text"><div class="question">What is an "Industry"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A group of firms producing a similar product or service.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">2</div>
+        <div class="test-q-text"><div class="question">What is "Industry Analysis"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Business research that focuses on the potential of an industry.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">3</div>
+        <div class="test-q-text"><div class="question">What are "Firm-Level Factors"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Factors that include a firm's assets, products, culture, teamwork among its employees, reputation, and other resources.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">4</div>
+        <div class="test-q-text"><div class="question">What are "Industry-Level Factors"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Factors that include the threat of new entrants, rivalry among existing firms, bargaining power of buyers, and related factors.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">5</div>
+        <div class="test-q-text"><div class="question">What are "Environmental Trends"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Shifts in the external environment, including economic trends, social trends, technological advances, and political and regulatory changes.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">6</div>
+        <div class="test-q-text"><div class="question">What are "Business Trends"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Other trends that impact an industry, such as increasing/falling profit margins, accelerating/waning innovation, or rising/falling input costs.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">7</div>
+        <div class="test-q-text"><div class="question">What is "The Five Competitive Forces Model"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A framework for understanding the structure of an industry, composed of the forces that determine industry profitability.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">8</div>
+        <div class="test-q-text"><div class="question">What is a "Barrier to Entry"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A condition that creates a disincentive for a new firm to enter an industry.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">9</div>
+        <div class="test-q-text"><div class="question">What are "Switching Costs"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The fixed costs that buyers encounter when switching or changing from one supplier to another.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">10</div>
+        <div class="test-q-text"><div class="question">What is "Competitor Analysis"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A detailed analysis of a firm's competition that helps a firm understand the positions of its major competitors and the opportunities that are available.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">11</div>
+        <div class="test-q-text"><div class="question">What is "Competitive Intelligence"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The information that is gathered by a firm to learn about its competitors' strategies and behaviors.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">12</div>
+        <div class="test-q-text"><div class="question">What is a "Competitive Analysis Grid"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A tool for organizing the information a firm collects about its competitors.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODULE 2: WRITING A BUSINESS PLAN (file2.md)
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="module-section" id="module2">
+  <h1 class="module-title">Entrepreneurship — Writing a Business Plan</h1>
+  <p class="module-subtitle">Source: file2.md — Plan structure, sections, and investor presentation</p>
+
+  <!-- Topic 1 -->
+  <div class="topic-section" id="m2t1">
+    <h2 class="topic-heading">Topic 1: Introduction to Business Plans</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The dual-use nature of a business plan and the differing motives of the two primary audiences.</p>
+      <p><strong>Why:</strong> Understanding who reads the plan and what they are looking for is foundational to understanding why a business plan is written in a specific way.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Business Plan</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A written narrative, typically 25 to 35 pages long, that describes what a new business plans to accomplish.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Dual-Use Document</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A document used both inside and outside the firm.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        The Two Primary Audiences
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>A Firm's Employees:</strong> They are looking for a clearly written plan that helps them operate in sync and move forward in a consistent and purposeful manner.</li>
+          <li><strong>Investors and Other External Stakeholders:</strong> They are looking for a case to be made that the firm is a good use of an investor's funds or the attention of others.</li>
+        </ul>
+        <p><em>Relationship:</em> The business plan serves as a bridge aligning internal operations (employees) with external validation and funding (investors).</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="topic-section" id="m2t2">
+    <h2 class="topic-heading">Topic 2: Guidelines for Writing a Business Plan</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The recommended length (25–35 pages) and the reasoning against using highly creative or unconventional structures.</p>
+      <p><strong>Why:</strong> Instructors want to ensure students know how to format documents to meet standard investor expectations.</p>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Writing Guidelines
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>Structure:</strong> A business plan should follow a conventional structure to make the best impression. Departing from the basic structure is usually a mistake because investors are busy people who want to easily find critical information.</li>
+          <li><strong>Tone:</strong> The plan needs to project a sense of anticipation and excitement about the possibilities surrounding the new venture, along with facts and figures.</li>
+          <li><strong>Content Length:</strong> The plan must be long enough to provide sufficient, clear, and concise information on all important aspects, yet short enough to maintain reader interest. For most plans, 25 to 35 pages is sufficient.</li>
+          <li><strong>Evolution of the Plan:</strong> It is important to recognize that the written plan will usually change, as new insights invariably emerge when entrepreneurs immerse themselves in writing and receive feedback.</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-example">Example</div>
+      <p><strong>Software Packages (Jira):</strong> Interactive, menu-driven software packages like Jira exist to assist in writing a plan. However, entrepreneurs should avoid boilerplate plans that look like they came from a "canned" source.</p>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="topic-section" id="m2t3">
+    <h2 class="topic-heading">Topic 3: Types of Business Plans</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> Matching the type of business plan to its appropriate page length, audience, and purpose.</p>
+      <p><strong>Why:</strong> This framework distinctly categorizes the practical applications of business plans in real-world scenarios.</p>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        The Three-Tier Business Plan Framework
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>This model categorizes business plans based on their length, target audience, and the venture's stage of development:</p>
+        <ul>
+          <li><strong>Summary Business Plan:</strong> <em>Length:</em> 10–15 pages. <em>Purpose:</em> Works best for new ventures in the early stages of development that want to "test the waters" to see if investors are interested in their idea.</li>
+          <li><strong>Full Business Plan:</strong> <em>Length:</em> 25–35 pages. <em>Purpose:</em> Works best for new ventures that are at the point where they need funding or financing. It serves as a "blueprint" for the company's operations.</li>
+          <li><strong>Operational Business Plan:</strong> <em>Length:</em> 40–100 pages. <em>Purpose:</em> Meant primarily for an internal audience. It works best as a tool for creating a blueprint for a new venture's operations and providing guidance to operational managers.</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="topic-section" id="m2t4">
+    <h2 class="topic-heading">Topic 4: Outline of a Business Plan</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The sequential order of the sections.</p>
+      <p><strong>Why:</strong> The logical flow of a business plan is critical for investor readability.</p>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Full Outline: 9 Sections of a Business Plan
+        <span class="stepper-count">9 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Executive Summary</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Company Description</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Industry Analysis</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Market Analysis</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Marketing Plan</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Management Team and Company Structure</div></div>
+        <div class="step-item"><div class="step-number">7</div><div class="step-text">Operation Plan</div></div>
+        <div class="step-item"><div class="step-number">8</div><div class="step-text">Product (or Service) Design and Development Plan</div></div>
+        <div class="step-item"><div class="step-number">9</div><div class="step-text">Financial Projections</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="topic-section" id="m2t5">
+    <h2 class="topic-heading">Topic 5: Section 1 — Executive Summary</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The maximum length (two single-spaced pages) and its role as the gatekeeper document for investors.</p>
+      <p><strong>Why:</strong> Students must understand that without a strong executive summary, the rest of the plan may never be read.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Executive Summary</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A short overview of the entire business plan that provides a busy reader with everything that needs to be known about the new venture's distinctive nature. Should not exceed two single-spaced pages.</div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>It is arguably the most important section of a business plan. In many instances, an investor will only ask for a copy of the executive summary and will only request the entire plan if the summary is sufficiently convincing.</p>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="topic-section" id="m2t6">
+    <h2 class="topic-heading">Topic 6: Section 2 — Company Description</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The specific components that make up this section (e.g., mission statement, legal status).</p>
+      <p><strong>Why:</strong> It establishes the foundational legitimacy and legal realities of the startup.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Company Description</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The main body of the business plan that begins with a general description of the company.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include in Company Description
+        <span class="stepper-count">7 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Company description</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Company history</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Mission statement</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Products and services</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Current status</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Legal status and ownership</div></div>
+        <div class="step-item"><div class="step-number">7</div><div class="step-text">Key partnerships (if any)</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>While it may seem less important at first glance, it is extremely important because it demonstrates to the reader that you know how to translate an idea into a business.</p>
+    </div>
+  </div>
+
+  <!-- Topic 7 -->
+  <div class="topic-section" id="m2t7">
+    <h2 class="topic-heading">Topic 7: Section 3 — Industry Analysis</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The difference between industry analysis and market analysis.</p>
+      <p><strong>Why:</strong> Students frequently confuse the broader industry overview with the specific target market segment.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Industry Analysis (Section)</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A section describing the industry that the business will enter in terms of its size, growth rate, and sales projections.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include in Industry Analysis
+        <span class="stepper-count">6 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Industry size, growth rate, and sales projections</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Industry structure</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Nature of participants</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Key success factors</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Industry trends</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Long-term prospects</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship</div>
+      <p>A business must grasp its industry's promising areas and points of vulnerability before selecting a target market. The industry largely defines the playing field that a firm will participate in, making this step a mandatory prerequisite before conducting the localized Market Analysis.</p>
+    </div>
+  </div>
+
+  <!-- Topic 8 -->
+  <div class="topic-section" id="m2t8">
+    <h2 class="topic-heading">Topic 8: Section 4 — Market Analysis</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The focus on target markets rather than whole industries, and the inclusion of competitor analysis in this section.</p>
+      <p><strong>Why:</strong> Demonstrates an understanding of realistic market sizing for startups.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Market Analysis</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The process of breaking the industry into segments and zeroing in on the specific segment (or target market) to which the firm will try to appeal.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include in Market Analysis
+        <span class="stepper-count">3 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Market segmentation and target market selection</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Buyer behavior</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Competitor analysis</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>Most startups do not service their entire industry; instead, they focus on a specific target market within the industry. Knowing consumer behavior allows the startup to tailor its products or services appropriately to that specific target market.</p>
+    </div>
+  </div>
+
+  <!-- Topic 9 -->
+  <div class="topic-section" id="m2t9">
+    <h2 class="topic-heading">Topic 9: Section 5 — Marketing Plan</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The 'Four Ps' (Product, price, promotions, and place) as the core components of this section.</p>
+      <p><strong>Why:</strong> These are fundamental marketing principles applied to business planning.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Marketing Plan</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A section focusing on how the business will market and sell its product or service. Core items: Overall marketing strategy, Product, price, promotions, and place.</div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight (Steps)</div>
+      <p>The best way to describe the marketing plan is to sequentially: 1) articulate marketing strategy, positioning, and points of differentiation, and then 2) talk about how these are supported by price, promotional mix, and distribution strategy.</p>
+    </div>
+  </div>
+
+  <!-- Topic 10 -->
+  <div class="topic-section" id="m2t10">
+    <h2 class="topic-heading">Topic 10: Section 6 — Management Team &amp; Company Structure</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The high priority investors place on this section immediately after reading the executive summary.</p>
+      <p><strong>Why:</strong> Highlights the real-world investor heuristic that "ideas are cheap, execution is key" (which relies on a strong team).</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Management Team</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Typically consists of the founder or founders and a handful of key management personnel.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include
+        <span class="stepper-count">4 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Management team</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Board of directors</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Board of advisers</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Company structure</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship with Executive Summary</div>
+      <p>Many investors and readers will read the executive summary first and then go directly to the management team section to assess the strength of the people starting the firm.</p>
+    </div>
+  </div>
+
+  <!-- Topic 11 -->
+  <div class="topic-section" id="m2t11">
+    <h2 class="topic-heading">Topic 11: Section 7 — Operations Plan</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The "back stage" vs. "front stage" conceptual model and the mandate to keep the section brief.</p>
+      <p><strong>Why:</strong> Operational details can easily bloat a business plan; knowing how to categorize and condense them is a key skill.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Operations Plan</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Outlines how your business will be run and how your product or service will be produced.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Back Stage / Front Stage Model
+        <span class="accordion-badge">Model</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>A useful way to illustrate how a business runs is by describing activities in two categories:</p>
+        <ul>
+          <li><strong>"Back stage":</strong> Activities unseen to the customer.</li>
+          <li><strong>"Front stage":</strong> Activities seen by the customer.</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include
+        <span class="stepper-count">3 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">General approach to operations</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Business location</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Facilities and equipment</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>This section should be kept short and crisp to strike a careful balance between adequately describing the topic and providing too much detail.</p>
+    </div>
+  </div>
+
+  <!-- Topic 12 -->
+  <div class="topic-section" id="m2t12">
+    <h2 class="topic-heading">Topic 12: Section 8 — Product Design &amp; Development Plan</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> Why this section exists (to mitigate development risks) and the inclusion of intellectual property.</p>
+      <p><strong>Why:</strong> Acknowledging risks and protecting assets are major concerns for investors.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Product Design &amp; Development Plan</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A section needed if you are developing a completely new product or service, focusing on the status of your development efforts.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include
+        <span class="stepper-count">3 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Development status and tasks</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Challenges and risks</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Intellectual property</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>Many seemingly promising startups never get off the ground because product development stalls or is harder than expected. It is important to convince the reader that this will not happen to your venture.</p>
+    </div>
+  </div>
+
+  <!-- Topic 13 -->
+  <div class="topic-section" id="m2t13">
+    <h2 class="topic-heading">Topic 13: Section 9 — Financial Projections</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The specific pro forma documents required and the rationale for placing this section at the very end of the business plan.</p>
+      <p><strong>Why:</strong> Emphasizes that finances are the quantitative translation of the qualitative strategies discussed earlier.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Financial Projections</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The final section presenting a firm's pro forma (or projected) financial projections.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Items to Include
+        <span class="stepper-count">6 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Sources and uses of funds statement</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Assumptions sheet</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Pro forma income statements</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Pro forma balance sheets</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Pro forma cash flows</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Ratio analysis</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship</div>
+      <p>Financial projections come last because they take all the plans developed in the earlier sections and express them in financial terms.</p>
+    </div>
+  </div>
+
+  <!-- Topic 14 -->
+  <div class="topic-section" id="m2t14">
+    <h2 class="topic-heading">Topic 14: Presenting the Business Plan to Investors</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>What's likely to be tested:</strong> The specific list of the 12 slides required for an investor presentation, and the fundamental rules of presentation (timing, rehearsal, slide clarity).</p>
+      <p><strong>Why:</strong> Pitching is a core entrepreneurial skill, and standardizing the pitch deck format is industry standard practice.</p>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Rules for Oral Presentations
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>Follow Directions:</strong> If given 15 minutes, do not talk for more than the allotted time.</li>
+          <li><strong>Delivery:</strong> The presentation must be smooth and well-rehearsed. The entrepreneur should also look sharp.</li>
+          <li><strong>Visuals:</strong> Slides should be sharp and not cluttered.</li>
+          <li><strong>Preparation:</strong> A smart entrepreneur anticipates the questions that will be asked and is prepared for investor queries.</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        12 PowerPoint Slides for an Investor Presentation
+        <span class="stepper-count">12 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Title Slide</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Problem</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Solution</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Opportunity and target market</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Technology</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Competition</div></div>
+        <div class="step-item"><div class="step-number">7</div><div class="step-text">Marketing and sales</div></div>
+        <div class="step-item"><div class="step-number">8</div><div class="step-text">Management team</div></div>
+        <div class="step-item"><div class="step-number">9</div><div class="step-text">Financial projections</div></div>
+        <div class="step-item"><div class="step-number">10</div><div class="step-text">Current status</div></div>
+        <div class="step-item"><div class="step-number">11</div><div class="step-text">Financing sought</div></div>
+        <div class="step-item"><div class="step-number">12</div><div class="step-text">Summary</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Self-Test Module 2 -->
+  <div class="self-test-section">
+    <div class="self-test-header" onclick="toggleSelfTest(this)">
+      <h3>🧠 Self-Test: Module 2 — Business Plans</h3>
+      <span class="self-test-badge">11 questions</span>
+    </div>
+    <div class="self-test-body collapsed">
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">1</div>
+        <div class="test-q-text"><div class="question">What is a "Business Plan"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A written narrative, typically 25 to 35 pages long, that describes what a new business plans to accomplish.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">2</div>
+        <div class="test-q-text"><div class="question">What is a "Dual-Use Document"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A document used both inside and outside the firm.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">3</div>
+        <div class="test-q-text"><div class="question">What is an "Executive Summary"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A short overview of the entire business plan that provides a busy reader with everything that needs to be known about the new venture's distinctive nature. Should not exceed two single-spaced pages.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">4</div>
+        <div class="test-q-text"><div class="question">What is a "Company Description"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The main body of the business plan that begins with a general description of the company.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">5</div>
+        <div class="test-q-text"><div class="question">What is "Industry Analysis" (as a business plan section)?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A section describing the industry that the business will enter in terms of its size, growth rate, and sales projections.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">6</div>
+        <div class="test-q-text"><div class="question">What is "Market Analysis"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The process of breaking the industry into segments and zeroing in on the specific segment (or target market) to which the firm will try to appeal.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">7</div>
+        <div class="test-q-text"><div class="question">What is a "Marketing Plan"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A section focusing on how the business will market and sell its product or service.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">8</div>
+        <div class="test-q-text"><div class="question">What is the "Management Team" section?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Typically consists of the founder or founders and a handful of key management personnel.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">9</div>
+        <div class="test-q-text"><div class="question">What is an "Operations Plan"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Outlines how your business will be run and how your product or service will be produced.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">10</div>
+        <div class="test-q-text"><div class="question">What is a "Product Design &amp; Development Plan"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A section needed if you are developing a completely new product or service, focusing on the status of your development efforts.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">11</div>
+        <div class="test-q-text"><div class="question">What are "Financial Projections"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The final section presenting a firm's pro forma (or projected) financial projections.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODULE 3: FINANCIAL MANAGEMENT (file3.md)
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="module-section" id="module3">
+  <h1 class="module-title">Entrepreneurship &amp; Financial Management</h1>
+  <p class="module-subtitle">Source: file3.md — Ownership forms, financial objectives, statements &amp; ratios</p>
+
+  <!-- Topic 1 -->
+  <div class="topic-section" id="m3t1">
+    <h2 class="topic-heading">Topic 1: Introduction to Entrepreneurial Financial Management</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> The difference between Historical and Pro Forma financial statements.</p>
+      <p><strong>Why:</strong> This is a foundational concept. Instructors frequently test the distinction between retrospective reporting (historical/SECP required) and prospective planning (pro forma/internal use).</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Historical Financial Statements</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Statements that reflect past performance and are usually prepared on a quarterly and annual basis. Publicly traded firms are required by the SECP (Securities and Exchange Commission of Pakistan) to prepare these and make them available to the public.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Pro Forma Financial Statements</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Projected financial statements for future periods (typically completed for 2 to 3 years into the future) based on forecasts. Unlike historical statements, they are strictly planning tools and are not required by the SECP.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Forecasts</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Estimates of a firm's future income and expenses.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="topic-section" id="m3t2">
+    <h2 class="topic-heading">Topic 2: Choosing a Form of Business Ownership</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> The four critical factors to consider when choosing a legal form.</p>
+      <p><strong>Why:</strong> It represents a core decision-making framework for entrepreneurs evaluating different business structures.</p>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Factors Critical in Selecting a Form of Business Organization
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>When deciding on a legal framework, entrepreneurs must evaluate the following four critical issues:</p>
+        <ul>
+          <li><strong>1. The Cost:</strong> The expense of setting up and maintaining the legal form.</li>
+          <li><strong>2. Asset Protection:</strong> The extent to which personal assets can be shielded from the liabilities of the business.</li>
+          <li><strong>3. Tax Considerations:</strong> How the business structure will be taxed.</li>
+          <li><strong>4. Investors:</strong> The number and types of investors that will be involved in the business.</li>
+        </ul>
+        <p><strong>Common Legal Entities:</strong> Sole Proprietorship, Partnership (General and Limited), Corporation (Joint Stock Company), Limited Liability Company (LLC), Franchising.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="topic-section" id="m3t3">
+    <h2 class="topic-heading">Topic 3: Detailed Breakdown of Business Ownership Forms</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> Comparing the advantages/disadvantages of a Sole Proprietorship vs. Public/Private Companies.</p>
+      <p><strong>Why:</strong> Knowing liability limitations (unlimited in sole proprietorship vs limited in companies) and the structural differences (registration, continuity) are fundamental to business law and structure.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Sole Proprietorship</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A form of business ownership in which the business is owned and operated by one person, and the person and the business are essentially the same. It is the simplest form of business entity and is not a separate legal entity. No registration is required.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Partnership</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The relation between persons who have agreed to share the profits of a business carried on by all or anyone acting for all (Partnership Act 1932). An association of two or more individuals who agree to operate a business together for profit.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Joint Stock Company (Corporation)</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">An artificial person created by law having a separate entity with a perpetual succession and a common seal (Company Act 2017, regulated by SECP).</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Sole Proprietorship — Advantages &amp; Disadvantages
+        <span class="accordion-badge">Details</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p><strong>Advantages:</strong></p>
+        <ul>
+          <li>Easy and inexpensive to create.</li>
+          <li>Owner maintains complete control and retains all profits.</li>
+          <li>Business losses can be deducted against the owner's other income sources.</li>
+          <li>Not subject to double taxation.</li>
+          <li>Easy to dissolve.</li>
+        </ul>
+        <p><strong>Disadvantages:</strong></p>
+        <ul>
+          <li>Unlimited liability for the owner (a significant drawback).</li>
+          <li>Relies entirely on the skills of a single owner (though employees can be hired).</li>
+          <li>Difficult to raise capital.</li>
+          <li>Business ends at the owner's death or loss of interest.</li>
+          <li>Low liquidity of the owner's investment.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Joint Stock Company — Steps for Formation
+        <span class="stepper-count">8 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Promotion stage.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Registration application.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Verification of documents.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Incorporation stage.</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Changes (if applicable).</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Subscription of capital.</div></div>
+        <div class="step-item"><div class="step-number">7</div><div class="step-text">Penalties applied (if wrong statements are provided).</div></div>
+        <div class="step-item"><div class="step-number">8</div><div class="step-text">Commencement of business.</div></div>
+      </div></div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Private vs. Public Limited Company
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p><strong>Private Limited Company:</strong></p>
+        <ul>
+          <li><em>Suitable for:</em> Family businesses, partners well-known to each other, and those wanting to raise sufficient funds.</li>
+          <li><em>Advantages:</em> Control over business, limited liability, and the ability to raise a large sum of capital.</li>
+        </ul>
+        <p><strong>Public Limited Company:</strong></p>
+        <ul>
+          <li><em>Features:</em> Must have at least seven members to form, no restriction on the maximum number of shares, shares are freely sold and purchased, invites people (the public) to purchase shares, and member liability is limited.</li>
+          <li><em>Advantages:</em> Large amount of capital, transferability of shares, continuity, limited liability, and high reputation.</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="topic-section" id="m3t4">
+    <h2 class="topic-heading">Topic 4: Franchising</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> The division of responsibilities in the Franchise Relationship model (e.g., who sets final prices vs. who recommends them).</p>
+      <p><strong>Why:</strong> Understanding the balance of power and operational control is the defining characteristic of a franchise.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Franchising</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A system in which semi-independent business owners (franchisees) pay fees and royalties to a parent company (franchiser) in return for the right to become identified with its trademark, to sell its products or services, and often to use its business format and system.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Advantages &amp; Disadvantages of Franchising
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p><strong>Advantages:</strong> Management training and support (start-up and ongoing), brand name appeal, standardized quality of goods/services, and greater chances of success.</p>
+        <p><strong>Disadvantages:</strong> Franchise fee and ongoing royalties, strict adherence to standardized operations, limited product line, restrictions on suppliers, and less overall freedom.</p>
+      </div></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        The Franchising Relationship (Franchisor vs. Franchisee)
+        <span class="accordion-badge">Model</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>Site selection:</strong> Franchisor oversees/approves and may choose site; Franchisee chooses site with franchisor approval.</li>
+          <li><strong>Design:</strong> Franchisor provides prototype; Franchisee pays for and implements design.</li>
+          <li><strong>Employees:</strong> Franchisor makes general recommendations/training suggestions; Franchisee hires, manages, and fires employees.</li>
+          <li><strong>Products and services:</strong> Franchisor determines the line; Franchisee modifies only with franchisor approval.</li>
+          <li><strong>Prices:</strong> Franchisor can only recommend; Franchisee sets final prices.</li>
+          <li><strong>Purchasing:</strong> Franchisor establishes quality standards and approved supplier lists; Franchisee must meet standards and purchase from approved suppliers.</li>
+          <li><strong>Advertising:</strong> Franchisor develops national campaigns; Franchisee pays for national campaigns, complies with local requirements, and gets local ads approved.</li>
+          <li><strong>Quality control:</strong> Franchisor sets standards and enforces via inspections; Franchisee maintains standards and trains employees to implement them.</li>
+          <li><strong>Support:</strong> Franchisor provides support via established business system; Franchisee operates day-to-day with that support.</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="topic-section" id="m3t5">
+    <h2 class="topic-heading">Topic 5: Financial Management Core Concepts</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> Defining and differentiating the 4 primary financial objectives (Profitability vs Liquidity vs Efficiency vs Stability).</p>
+      <p><strong>Why:</strong> These four pillars form the complete basis for evaluating a venture's financial health.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Financial Management</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The ongoing process that deals with three distinct decisions: Investment Decision, Financing Decision, and Assets management decision.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Key Questions Answered by Financial Management
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li>Are we making or losing money? (Profit/loss).</li>
+          <li>How much cash is on hand? (Cash in hand).</li>
+          <li>Can we meet short-term obligations? (Liquidity).</li>
+          <li>How do we compare to industry peers? (Competitiveness).</li>
+          <li>Where will funds for improvements come from? (Financing Decision).</li>
+          <li>Can we partner to share risk/reduce cash needs? (Partnerships).</li>
+          <li>Are we in good financial shape overall? (Financial Position).</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        The 4 Primary Financial Objectives
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>1. Profitability:</strong> A company's ability to make a profit. Note: Many start-ups are not profitable in their first 1–3 years as they train employees and build brands, but must eventually achieve this to remain viable.</li>
+          <li><strong>2. Liquidity:</strong> A company's ability to meet its short-term financial obligations. Even profitable firms can struggle to keep enough cash in the bank for routine, timely obligations.</li>
+          <li><strong>3. Efficiency:</strong> How productively a firm utilizes its assets relative to its revenue and profits. <em>Example:</em> <strong>Southwest Airlines</strong> uses assets highly productively by having the lowest "turnaround time" in the airline industry.</li>
+          <li><strong>4. Stability:</strong> The overall health and vigor of the firm's financial posture, particularly relating to its debt-to-equity ratio. Stability requires keeping debt in check.</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="topic-section" id="m3t6">
+    <h2 class="topic-heading">Topic 6: The Process of Financial Management</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> The sequential order of the Financial Management Process and the "Percent-of-sales" method.</p>
+      <p><strong>Why:</strong> Understanding that historical data drives forecasts, which drive pro forma statements, is the logical backbone of financial planning.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Financial Statement</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A written report that quantitatively describes a firm's financial health (Income Statement, Balance Sheet, Statement of Cash Flows).</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Forecasts (Detailed)</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Predictions of a firm's future sales, expenses, income, and capital expenditures. Based on past performance, current circumstances, and future plans. They provide the basis for pro forma statements.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Budgets</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Itemized forecasts of a company's income, expenses, and capital needs used as a tool for financial planning and control.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Financial Ratios</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Metrics that depict relationships between items on a firm's financial statements to determine if objectives are met and how the firm stacks up against industry peers.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Sales Forecast</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A projection of a firm's sales for a specified period (e.g., a year). It is the first forecast developed and acts as the basis for all other forecasts.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Percent-of-Sales Method</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The most common way to forecast cost of sales and other income statement items. Assumes each expense item will grow at the same rate as sales (except individually forecastable items like depreciation).</div>
+      </div>
+    </div>
+
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        The 4-Step Process of Financial Management
+        <span class="stepper-count">4 steps</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text"><strong>Preparation of Historic Financial Statements</strong> (Income statement, Balance sheet, Statement of cash flows). → Feeds into Step 2.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text"><strong>Preparation of Forecasts</strong> (Income, Expenses, Capital expenditures). → Feeds into Step 3.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text"><strong>Preparation of Pro Forma Financial Statements</strong> (Pro forma income statement, balance sheet, and statement of cash flows). → Feeds into Step 4.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text"><strong>Ongoing Analysis of Financial Results</strong> (Ratio analysis, measuring results vs. plans, measuring results vs. industry norms).</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 7 -->
+  <div class="topic-section" id="m3t7">
+    <h2 class="topic-heading">Topic 7: Financial Statements &amp; Ratio Analysis</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Likely to be tested:</strong> Calculating specific ratios or matching ratio formulas to their correct category (Profitability vs. Liquidity vs. Stability).</p>
+      <p><strong>Why:</strong> Testing the formulas ensures students can quantitatively assess the 4 Primary Financial Objectives using real historical balance sheets and income statements.</p>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Income Statement</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Reflects the results of the operations of a firm over a specified period. It records all revenues and expenses to show whether the firm made a profit or experienced a loss.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Balance Sheet</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A snapshot of a company's assets, liabilities, and owner's equity at a specific point in time.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Statement of Cash Flows</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Summarizes the changes in a firm's cash position for a specified period of time and details exactly why those changes occurred. Categorized into operating, investing, and financing activities.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Historical Ratio Analysis — All Formulas
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p><strong>Profitability Ratios:</strong></p>
+        <ul>
+          <li><strong>Return on Assets (ROA):</strong> Net Income / Average Total Assets.</li>
+          <li><strong>Return on Equity (ROE):</strong> Net Income / Average Shareholders' Equity.</li>
+          <li><strong>Profit Margin:</strong> Net Income / Net Sales.</li>
+        </ul>
+        <p><strong>Liquidity Ratios:</strong></p>
+        <ul>
+          <li><strong>Current Ratio:</strong> Current Assets / Current Liabilities.</li>
+          <li><strong>Quick Ratio:</strong> Quick Assets / Current Liabilities.</li>
+        </ul>
+        <p><strong>Overall Financial Stability Ratios:</strong></p>
+        <ul>
+          <li><strong>Debt Ratio:</strong> Total Debt / Total Assets.</li>
+          <li><strong>Debt to Equity Ratio:</strong> Total Liabilities / Owners' Equity.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="content-block">
+      <div class="content-block-label label-example">Case Study</div>
+      <p><strong>New Venture Fitness Drinks:</strong> A fictitious sports drink company in business for five years targeting sports enthusiasts with nutritional fitness drinks. Opened a single location in 2022, a second in 2024, and planned a third in 2025. Strategy involves placing small, smoothie-style restaurants near large outdoor sports complexes. The company is profitable and growing at a rate of 25% per year.</p>
+    </div>
+  </div>
+
+  <!-- Self-Test Module 3 -->
+  <div class="self-test-section">
+    <div class="self-test-header" onclick="toggleSelfTest(this)">
+      <h3>🧠 Self-Test: Module 3 — Financial Management</h3>
+      <span class="self-test-badge">16 questions</span>
+    </div>
+    <div class="self-test-body collapsed">
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">1</div>
+        <div class="test-q-text"><div class="question">What are "Historical Financial Statements"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Statements that reflect past performance and are usually prepared on a quarterly and annual basis. Publicly traded firms are required by the SECP to prepare these and make them available to the public.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">2</div>
+        <div class="test-q-text"><div class="question">What are "Pro Forma Financial Statements"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Projected financial statements for future periods (typically completed for 2 to 3 years into the future) based on forecasts. They are strictly planning tools and are not required by the SECP.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">3</div>
+        <div class="test-q-text"><div class="question">What are "Forecasts"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Estimates of a firm's future income and expenses.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">4</div>
+        <div class="test-q-text"><div class="question">What is a "Sole Proprietorship"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A form of business ownership in which the business is owned and operated by one person, and the person and the business are essentially the same. It is the simplest form of business entity and is not a separate legal entity.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">5</div>
+        <div class="test-q-text"><div class="question">What is a "Partnership"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The relation between persons who have agreed to share the profits of a business carried on by all or anyone acting for all (Partnership Act 1932).</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">6</div>
+        <div class="test-q-text"><div class="question">What is a "Joint Stock Company"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">An artificial person created by law having a separate entity with a perpetual succession and a common seal (Company Act 2017, regulated by SECP).</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">7</div>
+        <div class="test-q-text"><div class="question">What is "Franchising"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A system in which semi-independent business owners (franchisees) pay fees and royalties to a parent company (franchiser) in return for the right to become identified with its trademark, to sell its products or services, and often to use its business format and system.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">8</div>
+        <div class="test-q-text"><div class="question">What is "Financial Management"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The ongoing process that deals with three distinct decisions: Investment Decision, Financing Decision, and Assets management decision.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">9</div>
+        <div class="test-q-text"><div class="question">What is a "Financial Statement"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A written report that quantitatively describes a firm's financial health (Income Statement, Balance Sheet, Statement of Cash Flows).</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">10</div>
+        <div class="test-q-text"><div class="question">What are "Budgets"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Itemized forecasts of a company's income, expenses, and capital needs used as a tool for financial planning and control.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">11</div>
+        <div class="test-q-text"><div class="question">What are "Financial Ratios"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Metrics that depict relationships between items on a firm's financial statements to determine if objectives are met and how the firm stacks up against industry peers.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">12</div>
+        <div class="test-q-text"><div class="question">What is a "Sales Forecast"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A projection of a firm's sales for a specified period. It is the first forecast developed and acts as the basis for all other forecasts.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">13</div>
+        <div class="test-q-text"><div class="question">What is the "Percent-of-Sales Method"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The most common way to forecast cost of sales and other income statement items. Assumes each expense item will grow at the same rate as sales.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">14</div>
+        <div class="test-q-text"><div class="question">What is an "Income Statement"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Reflects the results of the operations of a firm over a specified period. It records all revenues and expenses to show whether the firm made a profit or experienced a loss.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">15</div>
+        <div class="test-q-text"><div class="question">What is a "Balance Sheet"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A snapshot of a company's assets, liabilities, and owner's equity at a specific point in time.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">16</div>
+        <div class="test-q-text"><div class="question">What is a "Statement of Cash Flows"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Summarizes the changes in a firm's cash position for a specified period of time and details exactly why those changes occurred. Categorized into operating, investing, and financing activities.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODULE 4: NEW-VENTURE TEAMS (file4.md)
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="module-section" id="module4">
+  <h1 class="module-title">Chapter 9: Building a New-Venture Team</h1>
+  <p class="module-subtitle">Source: file4.md — Founders, teams, boards, and advisors</p>
+
+  <!-- Topic 1 -->
+  <div class="topic-section" id="m4t1">
+    <h2 class="topic-heading">Topic 1: Introduction &amp; Liabilities of Newness</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The definition of "Liabilities of Newness" and how to overcome it.</p>
+      <p><strong>Why:</strong> It is a foundational concept explaining why startups fail and directly justifies the need for building a strong, diverse new-venture team, which is the core thesis of the chapter.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">New Venture Team</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">The group of founders, key employees, and advisers that move a new venture from an idea to a fully functioning firm.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Liabilities of Newness</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Refers to the fact that new companies often falter because the people involved can't adjust fast enough to their new roles and because the firm lacks a track record of success.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        Elements of a New Venture Team
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <p>The new venture team does not typically come together all at once; instead, it is built progressively as the firm can afford to hire additional personnel. The separate elements include:</p>
+        <ul>
+          <li>Key employees</li>
+          <li>Management team</li>
+          <li>Board of directors</li>
+          <li>Board of advisers</li>
+          <li>Lenders and investors</li>
+          <li>Other professionals</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Relationship</div>
+      <p><strong>Overcoming Failure:</strong> New ventures have a high tendency to fail due to the liabilities of newness. Assembling a talented and experienced management team is one specific path that firms can take to overcome these limitations and adjust to new roles faster.</p>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="topic-section" id="m4t2">
+    <h2 class="topic-heading">Topic 2: The Founder or Founders</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The five factors contributing to a founder's success, specifically contrasting solo founders vs. team founders.</p>
+      <p><strong>Why:</strong> Professors often test the empirical benefits of team-founded start-ups (resources, viewpoints) and the specific benefits of prior industry/entrepreneurial experience (avoiding mistakes, better networks).</p>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        5 Factors That Contribute to a Founder's Success
+        <span class="stepper-count">5 factors</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text"><strong>Firm Started by a Team:</strong> Start-ups started by a team provide greater resources, a broader diversity of viewpoints, and a broader array of other positive attributes compared to individual-led ventures.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text"><strong>Higher Education:</strong> Entrepreneurial skills are enhanced through higher education.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text"><strong>Prior Entrepreneurial Experience:</strong> Founders who are familiar with the entrepreneurial process are more likely to avoid costly mistakes compared to founders without this experience.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text"><strong>Relevant Industry Experience:</strong> Founders with this experience are more likely to have better-established professional networks and more applicable marketing and management skills.</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text"><strong>The Ability to "Network" Effectively:</strong> Having broad social and professional networks gives founders potential access to additional know-how, capital, and customer referrals.</div></div>
+      </div></div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-insight">Key Insight</div>
+      <p>Studies show that 50% to 70% of all new ventures are started by more than one individual. It is widely believed that new ventures started by a team have an advantage over those started by a single individual.</p>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="topic-section" id="m4t3">
+    <h2 class="topic-heading">Topic 3: Recruiting &amp; Selecting Key Employees</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The purpose and application of a "Skills Profile."</p>
+      <p><strong>Why:</strong> It represents a practical, applied management tool that entrepreneurs use to systematically grow their team without redundant hiring.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Skills Profile</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A chart that depicts the most important skills that are needed and where skills gaps exist in a new firm.</div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-example">Case Study</div>
+      <p><strong>Skills Profile for New Venture Fitness Drinks:</strong> Jack Petty covers Executive Leadership. Peggy Wells covers Store Operations and Accounting/Finance. Jill Petersen covers Marketing and Sales. Cameron Ivey covers Supply Chain Management. <strong>Identified Gaps:</strong> No personnel for HR/Recruiting (Gap 1), Community Relations (Gap 2), and Franchise Operations (Gap 3).</p>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="topic-section" id="m4t4">
+    <h2 class="topic-heading">Topic 4: The Roles of the Board of Directors</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The distinction between an inside vs. outside director, the three formal responsibilities of the board, and the concept of lending legitimacy/signaling.</p>
+      <p><strong>Why:</strong> The legal and structural definition of corporate boards is a staple of business exams. The dual purpose of the board (formal legal oversight vs. strategic guidance/credibility) is a crucial analytical concept.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Board of Directors</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A panel of individuals who are elected by a corporation's shareholders to oversee the management of the firm. It is legally required if a new venture organizes as a corporation.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Inside Director</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A person who is also an officer of the firm.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Outside Director</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Someone who is not employed by the firm.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        3 Formal Responsibilities of the Board
+        <span class="stepper-count">3 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Appoint the officers of the firm.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Declare dividends.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Oversee the affairs of the corporation.</div></div>
+      </div></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+        <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        What a Board of Directors Can Do to Help a Start-Up
+        <span class="accordion-badge">Framework</span>
+      </button>
+      <div class="accordion-body"><div class="accordion-content">
+        <ul>
+          <li><strong>Provide Guidance:</strong> This is considered the board's most useful role, offering guidance and support to the firm's managers.</li>
+          <li><strong>Lend Legitimacy:</strong> Well-known and respected board members bring instant credibility to a firm, a concept also known as signaling.</li>
+        </ul>
+        <p><strong>Meeting Frequency:</strong> Most boards of directors meet three to four times a year. New ventures are more likely to pay board members in company stock or ask them to serve on a voluntary basis rather than paying a cash honorarium.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="topic-section" id="m4t5">
+    <h2 class="topic-heading">Topic 5: Board of Advisors</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The exact differences between a Board of Directors and a Board of Advisors.</p>
+      <p><strong>Why:</strong> This is a classic compare-and-contrast exam question. Students must know that advisors have no legal liability and offer nonbinding advice, making them easier to recruit for early-stage startups.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Board of Advisors</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">A panel of experts who are asked by a firm's managers to provide counsel and advice on an ongoing basis. Unlike a board of directors, it possesses no legal responsibility for the firm and gives strictly nonbinding advice.</div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="content-block-label label-relationship">Key Differences</div>
+      <ul>
+        <li>Unlike a board of directors, an advisory board possesses <strong>no legal responsibility</strong> for the firm and gives strictly <strong>nonbinding advice</strong>.</li>
+        <li>Many people are more willing to serve on a board of advisors because it requires less time and carries no potential legal liability.</li>
+        <li>Similar to the board of directors, the board of advisors provides guidance and lends credibility to the firm.</li>
+      </ul>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        3 Guidelines for Organizing a Board of Advisors
+        <span class="stepper-count">3 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Ensure advisors play a meaningful role in the firm's development and growth, otherwise they will become disappointed.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Look for board members who are compatible and complement one another in terms of experience and expertise.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Carefully spell out the rules regarding access to confidential information when inviting individuals to serve.</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Topic 6 -->
+  <div class="topic-section" id="m4t6">
+    <h2 class="topic-heading">Topic 6: Lenders, Investors &amp; Other Professionals</h2>
+    <div class="exam-focus-card">
+      <div class="exam-focus-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> Exam Focus</div>
+      <p><strong>Most likely to be tested:</strong> The value-added roles of lenders and investors beyond just providing money.</p>
+      <p><strong>Why:</strong> It highlights the concept of "smart money" in entrepreneurship—investors aren't just a bank; they act as recruiters, networkers, and strategic partners. Testing this ensures students understand the broader ecosystem of a startup's team.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Lenders and Investors</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">Because they have a vested financial interest in the companies they finance, they often become very involved in helping the firms they fund. They assume a natural role in providing financial oversight and lending advice.</div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('revealed')">
+        <div class="flashcard-tag">Key Term</div>
+        <div class="flashcard-term">Business Consultant</div>
+        <div class="flashcard-hint">tap to reveal</div>
+        <div class="flashcard-definition">An individual who gives professional or expert advice. Falls into two categories: paid consultants, and consultants available for free or at a reduced rate through a nonprofit governmental agency.</div>
+      </div>
+    </div>
+    <div class="stepper">
+      <button class="stepper-header" onclick="toggleStepper(this.parentElement)">
+        <span class="stepper-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+        9 Ways Lenders &amp; Investors Add Value
+        <span class="stepper-count">9 items</span>
+      </button>
+      <div class="stepper-body"><div class="stepper-content">
+        <div class="step-item"><div class="step-number">1</div><div class="step-text">Help identify and recruit key management personnel.</div></div>
+        <div class="step-item"><div class="step-number">2</div><div class="step-text">Provide insight into the markets that the new venture plans to enter.</div></div>
+        <div class="step-item"><div class="step-number">3</div><div class="step-text">Help the venture fine-tune its business model.</div></div>
+        <div class="step-item"><div class="step-number">4</div><div class="step-text">Serve as a sounding board for new ideas.</div></div>
+        <div class="step-item"><div class="step-number">5</div><div class="step-text">Provide introductions to additional sources of capital.</div></div>
+        <div class="step-item"><div class="step-number">6</div><div class="step-text">Serve on the new venture's board of directors or board of advisors.</div></div>
+        <div class="step-item"><div class="step-number">7</div><div class="step-text">Recruit customers.</div></div>
+        <div class="step-item"><div class="step-number">8</div><div class="step-text">Help to arrange business partnerships.</div></div>
+        <div class="step-item"><div class="step-number">9</div><div class="step-text">Provide a sense of stability and calm.</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Self-Test Module 4 -->
+  <div class="self-test-section">
+    <div class="self-test-header" onclick="toggleSelfTest(this)">
+      <h3>🧠 Self-Test: Module 4 — New-Venture Teams</h3>
+      <span class="self-test-badge">8 questions</span>
+    </div>
+    <div class="self-test-body collapsed">
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">1</div>
+        <div class="test-q-text"><div class="question">What is a "New Venture Team"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">The group of founders, key employees, and advisers that move a new venture from an idea to a fully functioning firm.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">2</div>
+        <div class="test-q-text"><div class="question">What are "Liabilities of Newness"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Refers to the fact that new companies often falter because the people involved can't adjust fast enough to their new roles and because the firm lacks a track record of success.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">3</div>
+        <div class="test-q-text"><div class="question">What is a "Skills Profile"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A chart that depicts the most important skills that are needed and where skills gaps exist in a new firm.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">4</div>
+        <div class="test-q-text"><div class="question">What is a "Board of Directors"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A panel of individuals who are elected by a corporation's shareholders to oversee the management of the firm. It is legally required if a new venture organizes as a corporation.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">5</div>
+        <div class="test-q-text"><div class="question">What is an "Inside Director"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A person who is also an officer of the firm.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">6</div>
+        <div class="test-q-text"><div class="question">What is an "Outside Director"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">Someone who is not employed by the firm.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">7</div>
+        <div class="test-q-text"><div class="question">What is a "Board of Advisors"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">A panel of experts who are asked by a firm's managers to provide counsel and advice on an ongoing basis. Possesses no legal responsibility for the firm and gives strictly nonbinding advice.</div></div>
+      </div>
+      <div class="test-question" onclick="this.classList.toggle('revealed')">
+        <div class="test-q-num">8</div>
+        <div class="test-q-text"><div class="question">What is a "Business Consultant"?</div><div class="tap-hint">tap to reveal answer</div><div class="answer">An individual who gives professional or expert advice. Falls into two categories: paid consultants, and consultants available for free or at a reduced rate through a nonprofit governmental agency.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+</div>
+</div>
+
+<!-- Scroll-to-top -->
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+// ═══ ACCORDION ═══
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+}
+
+// ═══ STEPPER ═══
+function toggleStepper(el) {
+  el.classList.toggle('open');
+}
+
+// ═══ SELF-TEST ═══
+function toggleSelfTest(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+
+// ═══ QUICK REVIEW MODE ═══
+const quickReviewToggle = document.getElementById('quickReviewToggle');
+const contentArea = document.getElementById('contentArea');
+
+quickReviewToggle.addEventListener('click', () => {
+  quickReviewToggle.classList.toggle('active');
+  contentArea.classList.toggle('quick-review');
+  const isActive = quickReviewToggle.classList.contains('active');
+  quickReviewToggle.setAttribute('aria-checked', isActive);
+});
+
+// ═══ THEME TOGGLE ═══
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('ehip-theme', theme);
+  themeIcon.innerHTML = theme === 'dark'
+    ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+    : '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+}
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// Restore saved theme
+const savedTheme = localStorage.getItem('ehip-theme');
+if (savedTheme) setTheme(savedTheme);
+
+// ═══ SIDEBAR (mobile) ═══
+const sidebar = document.getElementById('sidebar');
+const menuBtn = document.getElementById('menuBtn');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+  sidebarOverlay.classList.toggle('show');
+});
+sidebarOverlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('show');
+});
+
+// Close sidebar on nav link click (mobile)
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+    }
+  });
+});
+
+// ═══ ACTIVE NAV LINK ═══
+const navLinks = document.querySelectorAll('.nav-link[data-target]');
+const sections = [];
+navLinks.forEach(link => {
+  const target = document.getElementById(link.getAttribute('data-target'));
+  if (target) sections.push({ el: target, link });
+});
+
+function updateActiveNav() {
+  const scrollY = window.scrollY + 120;
+  let active = sections[0];
+  for (const s of sections) {
+    if (s.el.offsetTop <= scrollY) active = s;
+  }
+  navLinks.forEach(l => l.classList.remove('active'));
+  if (active) active.link.classList.add('active');
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
+
+// ═══ SCROLL TO TOP ═══
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ═══ PROGRESS BAR ═══
+const progressFill = document.getElementById('progressFill');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progressFill.style.width = pct + '%';
+}, { passive: true });
+
+// ═══ SEARCH ═══
+const searchInput = document.getElementById('searchInput');
+let searchTimeout;
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(doSearch, 200);
+});
+
+function doSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+  // Remove old highlights
+  document.querySelectorAll('.search-match').forEach(el => {
+    const parent = el.parentNode;
+    parent.replaceChild(document.createTextNode(el.textContent), el);
+    parent.normalize();
+  });
+  // Remove hidden classes
+  document.querySelectorAll('.search-hidden').forEach(el => el.classList.remove('search-hidden'));
+
+  if (!query) return;
+
+  const topicSections = document.querySelectorAll('.topic-section');
+  topicSections.forEach(section => {
+    const text = section.textContent.toLowerCase();
+    if (!text.includes(query)) {
+      section.classList.add('search-hidden');
+    } else {
+      // Highlight matches in flashcard terms and definitions
+      highlightIn(section, query);
+    }
+  });
+
+  // Also handle self-test sections
+  document.querySelectorAll('.self-test-section').forEach(st => {
+    const text = st.textContent.toLowerCase();
+    if (!text.includes(query)) {
+      st.classList.add('search-hidden');
+    }
+  });
+}
+
+function highlightIn(container, query) {
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+  const matches = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    const idx = node.textContent.toLowerCase().indexOf(query);
+    if (idx !== -1 && !node.parentElement.classList.contains('search-match')) {
+      matches.push({ node, idx });
+    }
+  }
+  matches.forEach(({ node, idx }) => {
+    const range = document.createRange();
+    range.setStart(node, idx);
+    range.setEnd(node, idx + query.length);
+    const span = document.createElement('span');
+    span.className = 'search-match';
+    range.surroundContents(span);
+  });
+}
+</script>
+</body>
+</html>
